@@ -1,7 +1,7 @@
 """Run one experiment cell.
 
 Usage:
-    python3 dt_sim/experiments/run_one.py --variant renewal --t-slew 25 --tag renewal_25s
+    python3 experiments/run_one.py --variant renewal --t-slew 25 --tag renewal_25s
 """
 import argparse
 import sys
@@ -28,7 +28,7 @@ def parse_args():
     p.add_argument("--cloud-prob", type=float, default=0.66, dest="cloud_prob")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--tag", required=True)
-    p.add_argument("--out-dir", default="dt_sim/runs", dest="out_dir")
+    p.add_argument("--out-dir", default="runs", dest="out_dir")
     return p.parse_args()
 
 

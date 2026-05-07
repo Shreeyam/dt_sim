@@ -30,7 +30,7 @@ class SimConfig:
     n_trials: int = 20
     seed: int = 42
 
-    out_dir: str = "dt_sim/runs"
+    out_dir: str = "runs"
     tag: str = "default"
 
     def __post_init__(self):

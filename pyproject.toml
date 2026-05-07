@@ -9,7 +9,18 @@ description = "Dynamic tasking simulator for agile EO satellites"
 requires-python = ">=3.10"
 dependencies = [
     "numpy",
+    "pyscipopt",
     "scipy",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+imagery = [
+    "pyproj",
+    "requests",
+    "xarray",
 ]
 
 [tool.setuptools.packages.find]

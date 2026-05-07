@@ -1,8 +1,6 @@
 """3D geometry primitives: distances, rotations, frame builders.
 
-Consolidates vector helpers and rotation-matrix builders. Only the helpers
-actually used by the simulator are kept; the quaternion stack and the
-broken rotmat_x / rotmat_y from the legacy code are dropped.
+Vector helpers and rotation-matrix builders used by the simulator.
 """
 import numpy as np
 

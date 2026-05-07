@@ -1,7 +1,7 @@
-"""DoE driver for paper 1 sweeps.
+"""Experiment sweep driver.
 
 Two sweeps:
-    e2 (baselines): one (t_slew, fov) cell, all four variants paired.
+    e2 (baselines): one (t_slew, fov) cell, all requested variants paired.
     e5 (agility):   sweep t_slew at default fov, paired across {always, renewal,
                     never, omniscient}.
 
@@ -9,8 +9,8 @@ Both share the underlying scenarios across variants — building each scenario
 once and replaying all variants on it cuts MILP baseline cost by ~4x.
 
 Usage:
-    python3 dt_sim/experiments/run_sweep.py e2 [--n-trials 20 --horizon 12]
-    python3 dt_sim/experiments/run_sweep.py e5 [--n-trials 20 --horizon 12]
+    python3 experiments/run_sweep.py e2 [--n-trials 20 --horizon 12]
+    python3 experiments/run_sweep.py e5 [--n-trials 20 --horizon 12]
 """
 import argparse
 import sys
@@ -37,7 +37,7 @@ def parse_args():
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--variants", nargs="+", default=DEFAULT_VARIANTS,
                    help="variants to evaluate per scenario")
-    p.add_argument("--out-dir", default="dt_sim/runs", dest="out_dir")
+    p.add_argument("--out-dir", default="runs", dest="out_dir")
     return p.parse_args()
 
 

@@ -1,9 +1,7 @@
 """Realistic cloud imagery: GOES / Meteosat / Himawari fetchers + BCM loaders.
 
 Provides Binary Cloud Mask (BCM) data for replacing the synthetic Bernoulli
-cloud model with actual meteorological satellite observations. Used for
-realistic-cloud experiments (paper 2 / thesis Ch 5); paper 1 uses the synthetic
-model on purpose.
+cloud model with actual meteorological satellite observations.
 
 Pipeline:
     download_*  →  raw image file in data/products/
@@ -185,8 +183,7 @@ def download_meteosat_image(time: datetime.datetime, auth_token: MeteosatAuthTok
 
 # ---------- Source registry ----------
 
-# Defined after the download functions so we can reference them directly. The
-# legacy module had two image_sources dicts shadowing each other; this is one.
+# Defined after the download functions so we can reference them directly.
 IMAGE_SOURCES: Dict[str, dict] = {
     "goes_west": {
         "description": "GOES West (18)",
@@ -261,7 +258,7 @@ def load_bcm(filename: str, lazy_load: bool = False) -> Tuple[np.ndarray, np.nda
             data = grbs[1].values
             lat = grbs[1].latitudes.reshape((3712, 3712))
             lon = grbs[1].longitudes.reshape((3712, 3712))
-        # Per legacy: code 3 = no-data sentinel; code 2 = cloudy, others clear.
+        # Meteosat cloud-mask convention: code 3 = no-data, code 2 = cloudy.
         lat[data == 3] = np.nan
         lon[data == 3] = np.nan
         lon[lon > 180] -= 360

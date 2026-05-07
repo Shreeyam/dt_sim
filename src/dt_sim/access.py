@@ -1,8 +1,8 @@
 """Imaging requests and access generation.
 
 `Access` is a single visibility opportunity for a `Request`. `get_accesses`
-runs the recursive spatial bisection search from the thesis to enumerate all
-accesses for a request set against a given orbit over a horizon.
+runs a recursive spatial bisection search to enumerate all accesses for a
+request set against a given orbit over a horizon.
 """
 import datetime
 import itertools

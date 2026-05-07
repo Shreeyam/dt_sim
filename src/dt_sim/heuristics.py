@@ -1,10 +1,9 @@
 """Chain-length estimator and decision-rule scoring.
 
-The two-boundary chain estimator is the paper's heuristic. It maps (lam, L, g)
--> E[K] where lam is the thinned (clear) Poisson rate, L is the raw observation
-window, and g is the worst-case slew that bounds chain spacing. Both bracketing
-scheduled accesses act as anchors, each contributing g of deterministic
-clearance.
+The two-boundary chain estimator maps (lam, L, g) -> E[K], where lam is the
+thinned clear-observation Poisson rate, L is the raw observation window, and g
+is the worst-case slew that bounds chain spacing. Both bracketing scheduled
+accesses act as anchors, each contributing g of deterministic clearance.
 
 `score_lookahead` returns the per-pitch decision score: visible count for the
 "always" variant, advantage minus opportunity cost for "renewal".

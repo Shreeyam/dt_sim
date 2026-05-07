@@ -1,32 +1,48 @@
 # dt_sim
 
-Clean-room rewrite of the dynamic-tasking experiments simulator for the Paper 1
-(DT heuristics) experiments. Self-contained: the backend (`src/dt_sim/`) replaces
-the legacy `phd_code/dynamic_tasker` package; `experiments/` holds the CLIs that
-drive it.
+Dynamic tasking simulator for agile Earth-observation satellites.
 
-## Design
+`dt_sim` models imaging requests, orbit access windows, cloud uncertainty,
+slew-constrained scheduling, and dynamic pitch-selection policies. The package
+is self-contained: reusable simulator code lives in `src/dt_sim/`, command-line
+experiment drivers live in `experiments/`, and bundled city data lives in
+`data/`.
 
-- **One config, one entry point.** `SimConfig` carries every knob; `run_pipeline(cfg)`
-  is the only thing experiments call. No per-cell forks of a `__main__`.
-- **Decision rule is a callable.** Variants (`always`, `renewal`, plus `never`
-  and `omniscient` baselines) plug into the simulator via
-  `heuristics.score_lookahead`. `renewal` is the two-boundary chain estimator;
-  everything else would be an approximation of it.
-- **Scenario setup is pure.** `build_scenario` takes a config and a RAAN, returns
-  a `Scenario`. Same scenario can be replayed under different policies for paired
-  comparisons.
-- **Sweeps are loops, not files.** `experiments/run_sweep.py` iterates DoE cells
-  and calls `run_pipeline` per cell. Adding a sweep dimension is editing a list,
-  not a script.
-- **Stable Access ids.** `Access.aid` is a process-stable monotonic counter, so
-  cloud-state dicts survive copies and pickles (unlike `id(a)` keying).
-- **MILP solver: SCIP.** Profiling shows MILP scheduling is ~95% of wall time
-  per trial, dominated by the 2 baseline schedules (conv + omni). HiGHS was
-  bake-offed (2026-04-24) and ran neck-and-neck with SCIP on identical optima
-  — this packing structure is presolve-friendly territory and SCIP handles it
-  well. Real speedup would require caching baseline schedules per `(RAAN, t_slew)`
-  to disk across sweep re-runs, not a different solver.
+## Installation
+
+```bash
+git clone https://github.com/Shreeyam/dt_sim.git
+cd dt_sim
+
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install --upgrade pip
+python3 -m pip install -e ".[dev]"
+```
+
+The core simulator uses PySCIPOpt/SCIP for MILP scheduling. If `pip` cannot
+install PySCIPOpt on your platform, install SCIP first and then rerun the
+editable install.
+
+Optional cloud-imagery helpers need additional dependencies:
+
+```bash
+python3 -m pip install -e ".[imagery]"
+```
+
+Meteosat GRIB loading also requires `pygrib`, which is most reliable on Linux.
+
+## Components
+
+- **Configuration:** `SimConfig` carries the simulation parameters.
+- **Scenario generation:** `build_scenario` constructs repeatable request,
+  orbit, access, and baseline schedule state for a trial.
+- **Scheduling:** `milp_schedule` maximizes total utility subject to slew-time
+  and one-observation-per-request constraints.
+- **Policies:** `never`, `always`, `renewal`, and `omniscient` variants can be
+  run independently or paired on identical scenarios.
+- **Experiment drivers:** `experiments/run_one.py` runs one cell, while
+  `experiments/run_sweep.py` runs paired baseline and agility sweeps.
 
 ## Layout
 
@@ -48,7 +64,8 @@ dt_sim/
 │   ├── scenario.py     build_scenario, Scenario
 │   └── simulator.py    simulate_dt, run_pipeline, save_result
 ├── experiments/
-│   └── run_one.py      CLI: one cell -> runs/<tag>.json
+│   ├── run_one.py      CLI: one cell -> runs/<tag>.json
+│   └── run_sweep.py    CLI: paired sweeps -> runs/*.json
 ├── tests/
 │   └── test_smoke.py
 └── runs/               JSON outputs
@@ -67,9 +84,9 @@ python3 -m pytest tests/                 # all (~1s)
 python3 -m pytest tests/ -m "not slow"   # component tests only
 ```
 
-## Mapping to paper experiments
+## Sweeps
 
-| Paper section | Sweep |
+| Sweep | Description |
 |---|---|
-| §5.3 baselines | `variant ∈ {never, always, renewal, omniscient}` at default cell |
-| §5.5 agility   | `t_slew ∈ {5, 10, 15, 25, 40, 60}` × `variant ∈ {always, renewal}` |
+| `e2` | Baseline comparison for `variant in {never, always, renewal, omniscient}` |
+| `e5` | Agility sweep over `t_slew in {5, 10, 15, 25, 40, 60}` |

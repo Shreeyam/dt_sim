@@ -1,8 +1,7 @@
 """MILP scheduler and request loaders.
 
-Drops the legacy greedy_schedule, greedy_schedulerepair, no_repair, eval_scenario,
-slew_angle, temporal_slew_angle, milp_schedule_constellation, and the unused
-Spacecraft / Scenario stubs. Only the pieces paper 1 actually exercises survive.
+Provides uniformly sampled request generation, world-city request loading, and
+single-satellite MILP scheduling under slew-time and one-per-request constraints.
 """
 import datetime
 import re
