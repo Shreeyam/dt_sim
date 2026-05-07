@@ -30,6 +30,35 @@ Optional cloud-imagery helpers need additional dependencies:
 python3 -m pip install -e ".[imagery]"
 ```
 
+Meteosat downloads require EUMETSAT API credentials. Set these environment
+variables before requesting an auth token:
+
+```bash
+export EUMETSAT_KEY="your-consumer-key"
+export EUMETSAT_SECRET="your-consumer-secret"
+```
+
+If you keep them in a local `.env` file, load them into your shell first:
+
+```bash
+set -a
+source .env
+set +a
+```
+
+Then pass them to the Meteosat token helper:
+
+```python
+import os
+
+from dt_sim.imagery import get_auth_token_meteosat
+
+token = get_auth_token_meteosat(
+    os.environ["EUMETSAT_KEY"],
+    os.environ["EUMETSAT_SECRET"],
+)
+```
+
 Meteosat GRIB loading also requires `pygrib`, which is most reliable on Linux.
 
 ## Components
