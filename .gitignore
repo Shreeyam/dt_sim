@@ -1,0 +1,35 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Python caches and build outputs
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Generated experiment outputs
+runs/
+
+# Downloaded / derived meteorological products
+data/products/
+data/tmp/
+data/derived/
+
+# OS/editor noise
+.DS_Store
+*.swp
+*.swo
