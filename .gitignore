@@ -24,6 +24,20 @@ env/
 # Generated experiment outputs
 runs/
 
+# LaTeX build intermediates
+*.aux
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
 # Downloaded / derived meteorological products
 data/products/
 data/tmp/
@@ -31,5 +45,6 @@ data/derived/
 
 # OS/editor noise
 .DS_Store
+.*.bkp
 *.swp
 *.swo

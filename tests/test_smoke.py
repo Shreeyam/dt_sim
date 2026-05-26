@@ -15,7 +15,12 @@ import scipy.stats as st
 from dt_sim import SimConfig, run_pipeline
 from dt_sim.access import Access, Request
 from dt_sim.config import VARIANTS
-from dt_sim.heuristics import chain_two_boundary, score_lookahead
+from dt_sim.heuristics import (
+    break_even_spacing,
+    break_even_spacing_anchor_support,
+    chain_two_boundary,
+    score_lookahead,
+)
 
 
 # ---------- SimConfig ----------
@@ -112,17 +117,32 @@ def test_chain_matches_mc_one_case():
     assert abs(analytic - mc_mean) < 0.5, f"analytic={analytic:.3f}, mc={mc_mean:.3f}"
 
 
+def test_break_even_full_support_matches_support_solver():
+    lam, L, baseline = 0.08, 180.0, 4.0
+    closed = break_even_spacing(lam, L, baseline)
+    support = break_even_spacing_anchor_support(
+        lam, L, baseline, left_anchor_gap=0.0, right_anchor_gap=0.0)
+    assert abs(closed - support) < 1e-9
+
+
 # ---------- score_lookahead ----------
 
-def test_always_returns_visible_count():
-    score = score_lookahead("always", n_visible=7, t_window=100, p_clear=0.5,
+def test_greedy_returns_visible_count():
+    score = score_lookahead("greedy", n_visible=7, t_window=100, p_clear=0.5,
                             n_sched=2, avg_u=1.0, missed_utility=0.0, g_eff=10)
     assert score == 7.0
 
 
-def test_renewal_negative_when_dominated_by_baseline():
-    """If the existing schedule already saturates, renewal advantage is non-positive."""
-    score = score_lookahead("renewal", n_visible=2, t_window=100, p_clear=0.5,
+def test_two_anchor_negative_when_dominated_by_baseline():
+    """If the existing schedule already saturates, two-anchor advantage is non-positive."""
+    score = score_lookahead("two_anchor", n_visible=2, t_window=100, p_clear=0.5,
+                            n_sched=10, avg_u=1.0, missed_utility=0.0, g_eff=10)
+    assert score < 0
+
+
+def test_break_even_negative_when_dominated_by_baseline():
+    """If the existing schedule already saturates, break-even margin is non-positive."""
+    score = score_lookahead("break_even", n_visible=2, t_window=100, p_clear=0.5,
                             n_sched=10, avg_u=1.0, missed_utility=0.0, g_eff=10)
     assert score < 0
 

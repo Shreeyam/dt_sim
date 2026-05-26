@@ -9,8 +9,8 @@ Both share the underlying scenarios across variants — building each scenario
 once and replaying all variants on it cuts MILP baseline cost by ~4x.
 
 Usage:
-    python3 experiments/run_sweep.py e2 [--n-trials 20 --horizon 12]
-    python3 experiments/run_sweep.py e5 [--n-trials 20 --horizon 12]
+    python3 experiments/run_sweep.py e2 [--n-trials 12 --horizon 24]
+    python3 experiments/run_sweep.py e5 [--n-trials 12 --horizon 24]
 """
 import argparse
 import sys
@@ -24,16 +24,30 @@ from dt_sim import SimConfig, run_paired, save_result
 from dt_sim.scheduling import load_worldcities
 
 DEFAULT_VARIANTS = ["never", "always", "renewal", "omniscient"]
-E5_AGILITIES_S = [5, 10, 15, 25, 40, 60]
+E5_AGILITIES_S = [10, 15, 25, 40, 60]
 
 
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("sweep", choices=["e2", "e5"])
-    p.add_argument("--n-trials", type=int, default=20, dest="n_trials")
-    p.add_argument("--horizon", type=float, default=12.0, help="hours")
+    p.add_argument("--n-trials", type=int, default=12, dest="n_trials")
+    p.add_argument("--horizon", type=float, default=24.0, help="hours")
     p.add_argument("--n-cities", type=int, default=10000, dest="n_cities")
     p.add_argument("--cloud-prob", type=float, default=0.66, dest="cloud_prob")
+    p.add_argument("--cloud-source", choices=["iid", "bcm"], default="iid",
+                   dest="cloud_source")
+    p.add_argument("--bcm-data-dir", default=None, dest="bcm_data_dir")
+    p.add_argument("--bcm-download-missing", action="store_true",
+                   dest="bcm_download_missing")
+    p.add_argument("--trial-sampling", choices=["dates", "raan"], default="dates",
+                   dest="trial_sampling")
+    p.add_argument("--trial-start", default="2025-01-01T00:00:00",
+                   dest="trial_start_iso")
+    p.add_argument("--trial-end", default="2025-12-31T23:30:00",
+                   dest="trial_end_iso")
+    p.add_argument("--raan-deg", type=float, default=0.0, dest="raan_deg")
+    p.add_argument("--mean-anom-deg", type=float, default=0.0,
+                   dest="mean_anom_deg")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--variants", nargs="+", default=DEFAULT_VARIANTS,
                    help="variants to evaluate per scenario")
@@ -47,6 +61,14 @@ def _run_cell(*, tag: str, t_slew: float, args, requests, variants):
         horizon_h=args.horizon,
         n_cities=args.n_cities,
         cloud_prob=args.cloud_prob,
+        cloud_source=args.cloud_source,
+        bcm_data_dir=args.bcm_data_dir,
+        bcm_download_missing=args.bcm_download_missing,
+        trial_sampling=args.trial_sampling,
+        trial_start_iso=args.trial_start_iso,
+        trial_end_iso=args.trial_end_iso,
+        raan_deg=args.raan_deg,
+        mean_anom_deg=args.mean_anom_deg,
         n_trials=args.n_trials,
         seed=args.seed,
         out_dir=args.out_dir,

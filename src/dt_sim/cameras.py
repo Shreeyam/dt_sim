@@ -95,11 +95,18 @@ def project_in_box(pitch_deg: float, roll_deg: float, orbit, t,
                    K: np.ndarray):
     """Project ECEF points into the camera frame; return those inside the FoV."""
     points_eci = ecef2eci_vec(np.atleast_2d(points), t)
-    proj = project_from_orbit(points_eci, K, orbit, t,
-                              pitch_angle=pitch_deg, roll_angle=roll_deg)
+    R, r = _camera_pose_from_orbit(orbit, t, roll_deg, pitch_deg)
+    P = get_camera_matrix(K, R, r)
+    pts = np.concatenate((points_eci, np.ones((points_eci.shape[0], 1))), axis=1)
+    pts = (P @ pts.T).T
+    # This camera convention looks along negative z.  Requiring the point to be
+    # in the forward half-space prevents opposite-ray projections from landing
+    # numerically inside the detector rectangle.
+    in_front = pts[:, 2] < 0
+    proj = pts[:, 0:2] / pts[:, [2]]
     in_box_idx = np.array([
         i for i, p in enumerate(proj)
-        if 0 <= p[0] <= width and 0 <= p[1] <= height
+        if in_front[i] and 0 <= p[0] <= width and 0 <= p[1] <= height
     ])
     in_box_accesses = [a for i, a in enumerate(accesses) if i in in_box_idx]
     return in_box_accesses, in_box_idx, proj

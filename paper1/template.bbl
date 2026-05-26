@@ -1,0 +1,552 @@
+\begin{thebibliography}{57}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[King et~al.(2013)King, Platnick, Menzel, Ackerman, and
+  Hubanks]{king_spatial_2013}
+Michael~D. King, Steven Platnick, W.~Paul Menzel, Steven~A. Ackerman, and
+  Paul~A. Hubanks.
+\newblock Spatial and {Temporal} {Distribution} of {Clouds} {Observed} by
+  {MODIS} {Onboard} the {Terra} and {Aqua} {Satellites}.
+\newblock \emph{IEEE Transactions on Geoscience and Remote Sensing},
+  51\penalty0 (7):\penalty0 3826--3852, July 2013.
+\newblock ISSN 1558-0644.
+\newblock \doi{10.1109/TGRS.2012.2227333}.
+\newblock URL \url{https://ieeexplore.ieee.org/document/6422379}.
+\newblock Conference Name: IEEE Transactions on Geoscience and Remote Sensing.
+
+\bibitem[Kangaslahti et~al.(2024)Kangaslahti, Candela, Swope, Yue, and
+  Chien]{kangaslahti_dynamic_2024}
+Akseli Kangaslahti, Alberto Candela, Jason Swope, Qing Yue, and Steve Chien.
+\newblock Dynamic {Targeting} of {Satellite} {Observations} {Incorporating}
+  {Slewing} {Costs} and {Complex} {Observation} {Utility} *.
+\newblock In \emph{2024 {IEEE} {International} {Conference} on {Robotics} and
+  {Automation} ({ICRA})}, pages 4876--4882, May 2024.
+\newblock \doi{10.1109/ICRA57147.2024.10610692}.
+\newblock URL \url{https://ieeexplore.ieee.org/abstract/document/10610692}.
+
+\bibitem[Candela et~al.(2022)Candela, Swope, Chien, Su, and
+  Tavallali]{candela_dynamic_2022}
+Alberto Candela, Jason Swope, Steve Chien, Hui Su, and Peyman Tavallali.
+\newblock Dynamic {Targeting} for {Improved} {Tracking} of {Storm} {Features}.
+\newblock In \emph{{IGARSS} 2022 - 2022 {IEEE} {International} {Geoscience} and
+  {Remote} {Sensing} {Symposium}}, pages 5313--5316, Kuala Lumpur, Malaysia,
+  July 2022. IEEE.
+\newblock ISBN 978-1-6654-2792-0.
+\newblock \doi{10.1109/IGARSS46834.2022.9883696}.
+\newblock URL \url{https://ieeexplore.ieee.org/document/9883696/}.
+
+\bibitem[Howard(1966)]{howard_information_1966}
+Ronald~A. Howard.
+\newblock Information {Value} {Theory}.
+\newblock \emph{IEEE Transactions on Systems Science and Cybernetics},
+  SSC-2\penalty0 (1):\penalty0 22--26, 1966.
+\newblock ISSN 0536-1567.
+\newblock \doi{10.1109/TSSC.1966.300074}.
+
+\bibitem[Raiffa(1968)]{raiffa_applied_1968}
+Howard Raiffa.
+\newblock \emph{Decision {Analysis}: {Introductory} {Lectures} on {Choices}
+  under {Uncertainty}}.
+\newblock Addison-Wesley, Reading, MA, 1968.
+
+\bibitem[Augenstein(2014)]{augenstein_optimal_2014}
+Sean Augenstein.
+\newblock Optimal {Scheduling} of {Earth}-{Imaging} {Satellites} with {Human}
+  {Collaboration} via {Directed} {Acyclic} {Graphs}.
+\newblock \emph{AAAI Spring Symposium Series}, 2014.
+
+\bibitem[Eddy(2021)]{eddy_task_2021}
+Duncan Eddy.
+\newblock \emph{Task {Planning} for {Earth} {Observing} {Satellite} {Systems}}.
+\newblock PhD thesis, Stanford University, 2021.
+\newblock URL
+  \url{https://stacks.stanford.edu/file/druid:fp397ds6833/eddy_thesis_final-augmented.pdf}.
+
+\bibitem[Kacker(2025)]{kacker_spacecraft_2025}
+Shreeyam Kacker.
+\newblock \emph{Spacecraft {Autonomy} through {Computer} {Vision} and {Onboard}
+  {Planning}}.
+\newblock Thesis, Massachusetts Institute of Technology, September 2025.
+\newblock URL \url{https://dspace.mit.edu/handle/1721.1/165156}.
+\newblock Accepted: 2026-03-16T15:46:14Z.
+
+\bibitem[Bianchessi et~al.(2007)Bianchessi, Cordeau, Desrosiers, Laporte, and
+  Raymond]{bianchessi_heuristic_2007}
+Nicola Bianchessi, Jean-François Cordeau, Jacques Desrosiers, Gilbert Laporte,
+  and Vincent Raymond.
+\newblock A heuristic for the multi-satellite, multi-orbit and multi-user
+  management of {Earth} observation satellites.
+\newblock \emph{European Journal of Operational Research}, 177\penalty0
+  (2):\penalty0 750--762, March 2007.
+\newblock ISSN 03772217.
+\newblock \doi{10.1016/j.ejor.2005.12.026}.
+\newblock URL
+  \url{https://linkinghub.elsevier.com/retrieve/pii/S0377221706000051}.
+
+\bibitem[Bianchessi and Righini(2008)]{bianchessi_planning_2008}
+Nicola Bianchessi and Giovanni Righini.
+\newblock Planning and scheduling algorithms for the {COSMO}-{SkyMed}
+  constellation.
+\newblock \emph{Aerospace Science and Technology}, 12\penalty0 (7):\penalty0
+  535--544, October 2008.
+\newblock ISSN 1270-9638.
+\newblock \doi{10.1016/j.ast.2008.01.001}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S1270963808000187}.
+
+\bibitem[Wolfe and Sorensen(2000)]{wolfe_three_2000}
+William~J. Wolfe and Stephen~E. Sorensen.
+\newblock Three {Scheduling} {Algorithms} {Applied} to the {Earth} {Observing}
+  {Systems} {Domain}.
+\newblock \emph{Management Science}, 46\penalty0 (1):\penalty0 148--166,
+  January 2000.
+\newblock \doi{10.1287/mnsc.46.1.148.15134}.
+\newblock MAG ID: 2148027993.
+
+\bibitem[Bensana et~al.(1999)Bensana, Lemaitre, and
+  Verfaillie]{bensana_earth_1999}
+E.~Bensana, M.~Lemaitre, and G.~Verfaillie.
+\newblock Earth {Observation} {Satellite} {Management}.
+\newblock \emph{Constraints}, 4\penalty0 (3):\penalty0 293--299, September
+  1999.
+\newblock ISSN 1572-9354.
+\newblock \doi{10.1023/A:1026488509554}.
+\newblock URL \url{https://doi.org/10.1023/A:1026488509554}.
+
+\bibitem[Augenstein et~al.(2016)Augenstein, Estanislao, Guere, and
+  Blaes]{augenstein_optimal_2016}
+Sean Augenstein, Alejandra Estanislao, Emmanuel Guere, and Sean Blaes.
+\newblock Optimal scheduling of a constellation of earth-imaging satellites,
+  for maximal data throughput and efficient human management.
+\newblock In \emph{Proceedings of the {International} {Conference} on
+  {Automated} {Planning} and {Scheduling}}, volume~26, pages 345--352, 2016.
+\newblock URL \url{https://ojs.aaai.org/index.php/ICAPS/article/view/13784}.
+
+\bibitem[Nag et~al.(2019)Nag, Li, Ravindra, Sanchez~Net, Cheung, Lammers, and
+  Bledsoe]{nag_autonomous_2019}
+Sreeja Nag, Alan~S. Li, Vinay Ravindra, Marc Sanchez~Net, Kar-Ming Cheung, Rod
+  Lammers, and Brian~P. Bledsoe.
+\newblock Autonomous {Scheduling} of {Agile} {Spacecraft} {Constellations} with
+  {Delay} {Tolerant} {Networking} for {Reactive} {Imaging}.
+\newblock In \emph{Workshop on Scheduling and Planning Applications woRKshop
+  ({SPARK}), International Conference on Automated Planning and Scheduling},
+  April 2019.
+\newblock URL \url{https://openreview.net/forum?id=rJeDNZq5FE}.
+
+\bibitem[Eddy and Kochenderfer(2021)]{eddy_maximum_2021}
+Duncan Eddy and Mykel~J. Kochenderfer.
+\newblock A {Maximum} {Independent} {Set} {Method} for {Scheduling}
+  {Earth}-{Observing} {Satellite} {Constellations}.
+\newblock \emph{Journal of Spacecraft and Rockets}, 58\penalty0 (5):\penalty0
+  1416--1429, September 2021.
+\newblock ISSN 0022-4650, 1533-6794.
+\newblock \doi{10.2514/1.A34931}.
+\newblock URL \url{https://arc.aiaa.org/doi/10.2514/1.A34931}.
+
+\bibitem[Eddy and Kochenderfer(2020)]{eddy_markov_2020}
+Duncan Eddy and Mykel Kochenderfer.
+\newblock Markov {Decision} {Processes} {For} {Multi}-{Objective} {Satellite}
+  {Task} {Planning}.
+\newblock In \emph{2020 {IEEE} {Aerospace} {Conference}}, pages 1--12, Big Sky,
+  MT, USA, March 2020. IEEE.
+\newblock ISBN 978-1-7281-2734-7.
+\newblock \doi{10.1109/AERO47225.2020.9172258}.
+\newblock URL \url{https://ieeexplore.ieee.org/document/9172258/}.
+
+\bibitem[Herrmann and Schaub(2023)]{herrmann_reinforcement_2023}
+Adam Herrmann and Hanspeter Schaub.
+\newblock Reinforcement {Learning} for the {Agile} {Earth}-{Observing}
+  {Satellite} {Scheduling} {Problem}.
+\newblock \emph{IEEE Transactions on Aerospace and Electronic Systems}, pages
+  1--13, 2023.
+\newblock ISSN 0018-9251, 1557-9603, 2371-9877.
+\newblock \doi{10.1109/TAES.2023.3251307}.
+\newblock URL \url{https://ieeexplore.ieee.org/document/10058020/}.
+
+\bibitem[Wang et~al.(2023)Wang, Zhao, Shi, and Jin]{wang_deep_2023}
+Xin Wang, Fanyu Zhao, Zhong Shi, and Zhonghe Jin.
+\newblock Deep {Reinforcement} {Learning}-{Based} {Periodic} {Earth}
+  {Observation} {Scheduling} for {Agile} {Satellite} {Constellation}.
+\newblock \emph{Journal of Aerospace Information Systems}, pages 1--12, May
+  2023.
+\newblock ISSN 1940-3151, 2327-3097.
+\newblock \doi{10.2514/1.I011209}.
+\newblock URL \url{https://arc.aiaa.org/doi/10.2514/1.I011209}.
+
+\bibitem[Hadj-Salah et~al.(2019)Hadj-Salah, Verdier, Caron, Picard, and
+  Capelle]{hadj-salah_schedule_2019}
+Adrien Hadj-Salah, Rémi Verdier, Clément Caron, Mathieu Picard, and Mikaël
+  Capelle.
+\newblock Schedule {Earth} {Observation} satellites with {Deep} {Reinforcement}
+  {Learning}, November 2019.
+\newblock URL \url{http://arxiv.org/abs/1911.05696}.
+\newblock arXiv:1911.05696 [cs].
+
+\bibitem[Herrmann and Schaub(2022)]{herrmann_monte_2022}
+Adam~P. Herrmann and Hanspeter Schaub.
+\newblock Monte {Carlo} {Tree} {Search} {Methods} for the {Earth}-{Observing}
+  {Satellite} {Scheduling} {Problem}.
+\newblock \emph{Journal of Aerospace Information Systems}, 19\penalty0
+  (1):\penalty0 70--82, January 2022.
+\newblock ISSN 2327-3097.
+\newblock \doi{10.2514/1.I010992}.
+\newblock URL \url{https://arc.aiaa.org/doi/10.2514/1.I010992}.
+
+\bibitem[Chien et~al.(2005{\natexlab{a}})Chien, Sherwood, Tran, Cichy,
+  Rabideau, Castano, Davis, Mandl, Frye, Trout, Shulman, and
+  Boyer]{chien_using_2005}
+Steve Chien, Rob Sherwood, Daniel Tran, Benjamin Cichy, Gregg Rabideau, Rebecca
+  Castano, Ashley Davis, Dan Mandl, Stuart Frye, Bruce Trout, Seth Shulman, and
+  Darrell Boyer.
+\newblock Using {Autonomy} {Flight} {Software} to {Improve} {Science} {Return}
+  on {Earth} {Observing} {One}.
+\newblock \emph{Journal of Aerospace Computing, Information, and
+  Communication}, 2\penalty0 (4):\penalty0 196--216, April 2005{\natexlab{a}}.
+\newblock ISSN 1542-9423.
+\newblock \doi{10.2514/1.12923}.
+\newblock URL \url{https://arc.aiaa.org/doi/10.2514/1.12923}.
+
+\bibitem[Chien et~al.(2005{\natexlab{b}})Chien, Sherwood, Tran, Cichy,
+  Rabideau, Castaño, Davies, Mandl, Frye, Trout, D'Agostino, Shulman, Boyer,
+  Hayden, Sweet, and Christa]{chien_lessons_2005}
+Steve Chien, Rob Sherwood, Daniel Tran, Benjamin Cichy, Gregg Rabideau, Richard
+  Castaño, Ashley Davies, Daniel Mandl, Stuart Frye, Bruce Trout, Jeff
+  D'Agostino, Seth Shulman, Darrell Boyer, Sandra Hayden, Adam Sweet, and Scott
+  Christa.
+\newblock Lessons learned from autonomous sciencecraft experiment.
+\newblock In \emph{Proceedings of the International Conference on Autonomous
+  Agents}, page~18, July 2005{\natexlab{b}}.
+\newblock \doi{10.1145/1082473.1082798}.
+
+\bibitem[Wagstaff et~al.(2017)Wagstaff, Altinok, Chien, Rebbapragada, Schaffer,
+  Thompson, and Tran]{wagstaff_cloud_2017}
+Kiri~L Wagstaff, Alphan Altinok, Steve~A Chien, Umaa Rebbapragada, Steve~R
+  Schaffer, David~R Thompson, and Daniel~Q Tran.
+\newblock Cloud {Filtering} and {Novelty} {Detection} using {Onboard} {Machine}
+  {Learning} for the {EO}-1 {Spacecraft}.
+\newblock \emph{International Joint Conference on Artificial Intelligence},
+  page~4, 2017.
+
+\bibitem[Imasu et~al.(2023)Imasu, Matsunaga, Nakajima, Yoshida, Shiomi, Morino,
+  Saitoh, Niwa, Someya, Oishi, Hashimoto, Noda, Hikosaka, Uchino, Maksyutov,
+  Takagi, Ishida, Nakajima, Nakajima, and Shi]{imasu_greenhouse_2023}
+Ryoichi Imasu, Tsuneo Matsunaga, Masakatsu Nakajima, Yukio Yoshida, Kei Shiomi,
+  Isamu Morino, Naoko Saitoh, Yosuke Niwa, Yu~Someya, Yu~Oishi, Makiko
+  Hashimoto, Hibiki Noda, Kouki Hikosaka, Osamu Uchino, Shamil Maksyutov,
+  Hiroshi Takagi, Haruma Ishida, Takashi~Y. Nakajima, Teruyuki Nakajima, and
+  Chong Shi.
+\newblock Greenhouse gases {Observing} {SATellite} 2 ({GOSAT}-2): mission
+  overview.
+\newblock \emph{Progress in Earth and Planetary Science}, 10\penalty0
+  (1):\penalty0 33, July 2023.
+\newblock ISSN 2197-4284.
+\newblock \doi{10.1186/s40645-023-00562-2}.
+\newblock URL
+  \url{https://progearthplanetsci.springeropen.com/articles/10.1186/s40645-023-00562-2}.
+
+\bibitem[Rijlaarsdam et~al.(2023)Rijlaarsdam, Hendrix, Gonzalez, Velasco-Mata,
+  Buckley, Miquel, Casaled, and Dunne]{rijlaarsdam_autonomous_2024}
+David Rijlaarsdam, Tom Hendrix, Pablo T~Toledano Gonzalez, Alberto
+  Velasco-Mata, Leonie Buckley, Puig Miquel, Oriol~Aragon Casaled, and Aubrey
+  Dunne.
+\newblock Autonomous {Operational} {Scheduling} on {Cognisat}-6 {Based} on
+  {Onboard} {Artificial} {Intelligence}.
+\newblock In \emph{17th Symposium on Advanced Space Technologies in Robotics
+  and Automation}, October 2023.
+\newblock URL
+  \url{https://ubotica.com/wp-content/uploads/2024/08/41_Rijlaarsdam_Autonomous-Operational-Scheduling-on-CogniSat-6-Based-on-Onboard-Artificial-Intelligence.pdf}.
+
+\bibitem[Damiani et~al.(2005)Damiani, Verfaillie, and
+  Charmeau]{damiani_continuous_2005}
+Sylvain Damiani, Gérard Verfaillie, and Marie-Claire Charmeau.
+\newblock A {Continuous} {Anytime} {Planning} {Module} for an {Autonomous}
+  {Earth} {Watching} {Satellite}.
+\newblock In \emph{Proceedings of the 25th {International} {Conference} on
+  {Automated} {Planning} and {Scheduling}}, 2005.
+\newblock URL
+  \url{https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=4b3b5f8df89e8748c6f69aa2b14cf70d3e5c4db4#page=23}.
+
+\bibitem[Lenzen et~al.(2014)Lenzen, Woerle, Göttfert, Mrowka, and
+  Wickler]{lenzen_onboard_2014}
+Christoph Lenzen, Maria~T. Woerle, Tobias Göttfert, Falk Mrowka, and Martin
+  Wickler.
+\newblock Onboard {Planning} and {Scheduling} {Autonomy} within the {Scope} of
+  the {FireBird} {Mission}.
+\newblock In \emph{{SpaceOps} 2014 {Conference}}, Pasadena, CA, May 2014.
+  American Institute of Aeronautics and Astronautics.
+\newblock ISBN 978-1-62410-221-9.
+\newblock \doi{10.2514/6.2014-1759}.
+\newblock URL \url{https://arc.aiaa.org/doi/10.2514/6.2014-1759}.
+
+\bibitem[Chien and Troesch(2015)]{chien_heuristic_nodate}
+Steve Chien and Martina Troesch.
+\newblock Heuristic {Onboard} {Pointing} {Re}-scheduling for an {Earth}
+  {Observing} {Spacecraft}.
+\newblock In \emph{International Workshop on Planning and Scheduling for Space
+  ({IWPSS} 2015)}, Buenos Aires, Argentina, July 2015.
+\newblock URL
+  \url{https://ai.jpl.nasa.gov/public/papers/chien-iwpss2015-heuristic.pdf}.
+\newblock CL\#15-1658.
+
+\bibitem[Chien et~al.(2015)Chien, Knight, Schaffer, Thompson, Bue, and
+  Troesch]{chien_onboard_2015}
+Steve Chien, Russell Knight, Steve Schaffer, David~R Thompson, Brian Bue, and
+  Martina Troesch.
+\newblock An {Onboard} {Autonomous} {Response} {Prototype} for an {Earth}
+  {Observing} {Spacecraft}.
+\newblock \emph{International Joint Conference on Artificial Intelligence
+  Workshop on Artificial Intelligence in Space (AI Space, IJCAI 2015)}, 2015.
+
+\bibitem[Kacker and Cahoy(2024)]{kacker_reinforcement-learned_2024}
+Shreeyam Kacker and Kerri Cahoy.
+\newblock Reinforcement-{Learned} {Lookahead} {Heuristics} for
+  {Earth}-{Observing} {Satellites}.
+\newblock \emph{Small Satellite Conference}, August 2024.
+\newblock URL \url{https://digitalcommons.usu.edu/smallsat/2024/all2024/60}.
+
+\bibitem[Kacker et~al.(2025)Kacker, Chien, Devaraj, Demir, and
+  Cahoy]{kacker_leveraging_2025}
+Shreeyam Kacker, Steve Chien, Kiruthika Devaraj, Isıl Demir, and Kerri Cahoy.
+\newblock Leveraging {Realtime} {Meteorological} {Data} for {Dynamic} {Tasking}
+  of {Agile} {Earth}-{Observing} {Satellites}.
+\newblock In \emph{Proceedings of the 14th International Workshop on Planning
+  and Scheduling for Space}, Toulouse, France, April 2025.
+\newblock URL
+  \url{https://ai.jpl.nasa.gov/public/documents/papers/kacker-iwpss-2025.pdf}.
+
+\bibitem[Kacker et~al.(2022)Kacker, Meredith, Cahoy, and
+  Labrèche]{kacker_machine_2022}
+Shreeyam Kacker, Alex Meredith, Kerri Cahoy, and Georges Labrèche.
+\newblock Machine {Learning} {Image} {Processing} {Algorithms} {Onboard}
+  {OPS}-{SAT}.
+\newblock \emph{Small Satellite Conference}, August 2022.
+\newblock URL \url{https://digitalcommons.usu.edu/smallsat/2022/all2022/65}.
+
+\bibitem[Giuffrida et~al.(2022)Giuffrida, Fanucci, Meoni, Batic, Buckley,
+  Dunne, Van~Dijk, Esposito, Hefele, Vercruyssen, Furano, Pastena, and
+  Aschbacher]{giuffrida_-sat-1_2022}
+Gianluca Giuffrida, Luca Fanucci, Gabriele Meoni, Matej Batic, Leonie Buckley,
+  Aubrey Dunne, Chris Van~Dijk, Marco Esposito, John Hefele, Nathan
+  Vercruyssen, Gianluca Furano, Massimiliano Pastena, and Josef Aschbacher.
+\newblock The Φ-{Sat}-1 {Mission}: {The} {First} {On}-{Board} {Deep} {Neural}
+  {Network} {Demonstrator} for {Satellite} {Earth} {Observation}.
+\newblock \emph{IEEE Transactions on Geoscience and Remote Sensing},
+  60:\penalty0 1--14, 2022.
+\newblock ISSN 0196-2892, 1558-0644.
+\newblock \doi{10.1109/TGRS.2021.3125567}.
+\newblock URL \url{https://ieeexplore.ieee.org/document/9600851/}.
+
+\bibitem[Marin et~al.(2021)Marin, Coelho, Deconinck, Babkina, Longépé, and
+  Pastena]{marin_phi-sat-2_2021}
+Alessandro Marin, César Coelho, Florian Deconinck, Irina Babkina, Nicolas
+  Longépé, and Massimiliano Pastena.
+\newblock Phi-{Sat}-2: {Onboard} {AI} {Apps} for {Earth} {Observation}.
+\newblock In \emph{Proceedings of the 72nd International Astronautical
+  Congress}, September 2021.
+
+\bibitem[Rijlaarsdam et~al.(2024)Rijlaarsdam, Hendrix, González, Velasco-Mata,
+  Buckley, Miquel, Casaled, and Dunne]{rijlaarsdam_next_2024}
+David Rijlaarsdam, Tom Hendrix, Pablo T~Toledano González, Alberto
+  Velasco-Mata, Léonie Buckley, Juan~Puig Miquel, Oriol~Aragon Casaled, and
+  Aubrey Dunne.
+\newblock The {Next} {Era} for {Earth} {Observation} {Spacecraft}: {An}
+  {Overview} of {CogniSAT}-6, February 2024.
+\newblock URL
+  \url{https://www.techrxiv.org/users/746922/articles/718753-the-next-era-for-earth-observation-spacecraft-an-overview-of-cognisat-6?commit=8c953fb3b0efd72daf3e69eabd23c63b845d1698}.
+
+\bibitem[{Planet Labs PBC}(2024)]{noauthor_planet_2024}
+{Planet Labs PBC}.
+\newblock Planet {Labs} {PBC} {Announces} {Real}-{Time} {Insights} {Technology}
+  {Using} {NVIDIA} {Jetson} {Platform}, 2024.
+\newblock URL
+  \url{https://investors.planet.com/news/news-details/2024/Planet-Labs-PBC-Announces-Real-Time-Insights-Technology-Using-NVIDIA-Jetson-Platform/default.aspx}.
+
+\bibitem[Lemaı̂tre et~al.(2002)Lemaı̂tre, Verfaillie, Jouhaud, Lachiver,
+  and Bataille]{lemaitre_selecting_2002}
+Michel Lemaı̂tre, Gérard Verfaillie, Frank Jouhaud, Jean-Michel Lachiver,
+  and Nicolas Bataille.
+\newblock Selecting and scheduling observations of agile satellites.
+\newblock \emph{Aerospace Science and Technology}, 6\penalty0 (5):\penalty0
+  367--381, September 2002.
+\newblock ISSN 12709638.
+\newblock \doi{10.1016/S1270-9638(02)01173-2}.
+\newblock URL
+  \url{https://linkinghub.elsevier.com/retrieve/pii/S1270963802011732}.
+
+\bibitem[Singh et~al.(2009)Singh, Krause, and Kaiser]{singh_nonmyopic_2009}
+Amarjeet Singh, Andreas Krause, and William~J. Kaiser.
+\newblock Nonmyopic {Adaptive} {Informative} {Path} {Planning} for {Multiple}
+  {Robots}.
+\newblock In \emph{Proceedings of the 21st International Joint Conference on
+  Artificial Intelligence}, pages 1843--1850, April 2009.
+\newblock URL \url{https://www.ijcai.org/Proceedings/09/Papers/306.pdf}.
+
+\bibitem[Tan et~al.(2024)Tan, Ghuge, and Nagarajan]{tan_informative_2024}
+Rayen Tan, Rohan Ghuge, and Viswanath Nagarajan.
+\newblock Informative {Path} {Planning} with {Limited} {Adaptivity}.
+\newblock In \emph{Proceedings of {The} 27th {International} {Conference} on
+  {Artificial} {Intelligence} and {Statistics}}, pages 4006--4014. PMLR, April
+  2024.
+\newblock URL \url{https://proceedings.mlr.press/v238/tan24a.html}.
+
+\bibitem[Weitzman(1978)]{weitzman_optimal_1978}
+Martin Weitzman.
+\newblock \emph{Optimal {Search} for the {Best} {Alternative}}.
+\newblock Department of Energy, 1978.
+\newblock Google-Books-ID: 5CViWSuPJ1MC.
+
+\bibitem[Gupta et~al.(2015)Gupta, Nagarajan, and Singla]{gupta_algorithms_2015}
+Anupam Gupta, Viswanath Nagarajan, and Sahil Singla.
+\newblock Algorithms and {Adaptivity} {Gaps} for {Stochastic} {Probing}.
+\newblock In \emph{Proceedings of the 2016 {Annual} {ACM}-{SIAM} {Symposium} on
+  {Discrete} {Algorithms} ({SODA})}, Proceedings, pages 1731--1747. Society for
+  Industrial and Applied Mathematics, December 2015.
+\newblock \doi{10.1137/1.9781611974331.ch120}.
+\newblock URL
+  \url{https://epubs.siam.org/doi/abs/10.1137/1.9781611974331.ch120}.
+
+\bibitem[Chien et~al.(2005{\natexlab{c}})Chien, Cichy, Davies, Tran, Rabideau,
+  Castano, Sherwood, Mandl, Frye, Shulman, Jones, and
+  Grosvenor]{chien_autonomous_2005}
+S.~Chien, B.~Cichy, A.~Davies, D.~Tran, G.~Rabideau, R.~Castano, R.~Sherwood,
+  D.~Mandl, S.~Frye, S.~Shulman, J.~Jones, and S.~Grosvenor.
+\newblock An autonomous earth-observing {sensorWeb}.
+\newblock \emph{IEEE Intelligent Systems}, 20\penalty0 (3):\penalty0 16--24,
+  May 2005{\natexlab{c}}.
+\newblock ISSN 1941-1294.
+\newblock \doi{10.1109/MIS.2005.40}.
+\newblock URL \url{https://ieeexplore.ieee.org/abstract/document/1439475}.
+\newblock Conference Name: IEEE Intelligent Systems.
+
+\bibitem[Chien et~al.(2020)Chien, Davies, Doubleday, Tran, Mclaren, Chi, and
+  Maillard]{chien_automated_2020}
+Steve~A. Chien, Ashley~G. Davies, Joshua Doubleday, Daniel~Q. Tran, David
+  Mclaren, Wayne Chi, and Adrien Maillard.
+\newblock Automated {Volcano} {Monitoring} {Using} {Multiple} {Space} and
+  {Ground} {Sensors}.
+\newblock \emph{Journal of Aerospace Information Systems}, 17\penalty0
+  (4):\penalty0 214--228, April 2020.
+\newblock ISSN 2327-3097.
+\newblock \doi{10.2514/1.I010798}.
+\newblock URL \url{https://arc.aiaa.org/doi/10.2514/1.I010798}.
+
+\bibitem[Chien et~al.(2019)Chien, Mclaren, Doubleday, Tran, Tanpipat, and
+  Chitradon]{chien_using_2019}
+Steve Chien, David Mclaren, Joshua Doubleday, Daniel Tran, Veerachai Tanpipat,
+  and Royol Chitradon.
+\newblock Using {Taskable} {Remote} {Sensing} in a {Sensor} {Web} for
+  {Thailand} {Flood} {Monitoring}.
+\newblock \emph{Journal of Aerospace Information Systems}, 16\penalty0
+  (3):\penalty0 107--119, March 2019.
+\newblock ISSN 2327-3097.
+\newblock \doi{10.2514/1.I010672}.
+\newblock URL \url{https://arc.aiaa.org/doi/10.2514/1.I010672}.
+
+\bibitem[Mahonchak(2019)]{mahonchak_goes-r_nodate}
+Gary~D Mahonchak.
+\newblock {GOES}-{R} {Series} {Data} {Book}.
+\newblock Data book, {NASA GOES-R Series Program Office}, May 2019.
+\newblock URL
+  \url{https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf}.
+\newblock Revision A; CDRL PM-14.
+
+\bibitem[Xu et~al.(2020)Xu, Liu, He, and Chen]{xu_multi-satellite_2020}
+Yingjie Xu, Xiaolu Liu, Renjie He, and Yingguo Chen.
+\newblock Multi-satellite scheduling framework and algorithm for very large
+  area observation.
+\newblock \emph{Acta Astronautica}, 167:\penalty0 93--107, February 2020.
+\newblock ISSN 00945765.
+\newblock \doi{10.1016/j.actaastro.2019.10.041}.
+\newblock URL
+  \url{https://linkinghub.elsevier.com/retrieve/pii/S0094576519313694}.
+
+\bibitem[Bosch-Lluis et~al.(2022)Bosch-Lluis, Kangaslahti, Ramos, Ogut, Tanner,
+  Cooperrider, Munoz-Martini, Yue, Deal, and Cooke]{bosch-lluis_smart_2022}
+Xavier Bosch-Lluis, Pekka Kangaslahti, Isaac Ramos, Mehmet Ogut, Alan Tanner,
+  Joelle Cooperrider, Joan~Francesc Munoz-Martini, Qing Yue, William Deal, and
+  Caitlyn Cooke.
+\newblock Smart {Ice} {Cloud} {Sensing} ({SMICES}): {An} {Overview} of its
+  {Submillimeter} {Wave} {Radiometer}.
+\newblock In \emph{{IGARSS} 2022 - 2022 {IEEE} {International} {Geoscience} and
+  {Remote} {Sensing} {Symposium}}, pages 4296--4299, July 2022.
+\newblock \doi{10.1109/IGARSS46834.2022.9883671}.
+
+\bibitem[Feller(1991)]{feller_introduction_1991}
+William Feller.
+\newblock \emph{An {Introduction} to {Probability} {Theory} and {Its}
+  {Applications}, {Volume} 2}.
+\newblock John Wiley \& Sons, January 1991.
+\newblock ISBN 978-0-471-25709-7.
+\newblock Google-Books-ID: rxadEAAAQBAJ.
+
+\bibitem[David and Nagaraja(2004)]{david_order_2004}
+Herbert~A. David and Haikady~N. Nagaraja.
+\newblock \emph{Order {Statistics}}.
+\newblock John Wiley \& Sons, March 2004.
+\newblock ISBN 978-0-471-65401-8.
+\newblock Google-Books-ID: bdhzFXg6xFkC.
+
+\bibitem[Feller(1948)]{feller_probability_1948}
+William Feller.
+\newblock On {Probability} {Problems} in the {Theory} of {Counters}.
+\newblock In \emph{Studies and {Essays} {Presented} to {R}. {Courant} on {His}
+  60th {Birthday}}. Interscience Publishers, New York, 1948.
+
+\bibitem[Pyke(1958)]{pyke_renewal_1958}
+Ronald Pyke.
+\newblock On {Renewal} {Processes} {Related} to {Type} {I} and {Type} {II}
+  {Counter} {Models}.
+\newblock \emph{The Annals of Mathematical Statistics}, 29\penalty0
+  (3):\penalty0 737--754, 1958.
+\newblock ISSN 0003-4851.
+\newblock URL \url{https://www.jstor.org/stable/2237260}.
+
+\bibitem[Boerkoel et~al.(2021)Boerkoel, Mason, Wang, Chien, and
+  Maillard]{boerkoel_efficient_2021}
+James Boerkoel, James Mason, Daniel Wang, Steve Chien, and Adrien Maillard.
+\newblock An {Efficient} {Approach} for {Scheduling} {Imaging} {Tasks} {Across}
+  a {Fleet} of {Satellites}.
+\newblock \emph{International Workshop on Planning {\textbackslash}\&
+  Scheduling for Space (IWPSS)}, 2021.
+
+\bibitem[DigitalGlobe(2008)]{maxar_technologies_worldview-1_nodate}
+DigitalGlobe.
+\newblock {WorldView}-1 {Product} {Quick} {Reference} {Guide}, April 2008.
+\newblock URL
+  \url{https://www.planetek.it/sites/default/files/WorldView-1_product_guide.pdf}.
+\newblock Version 1.2.
+
+\bibitem[{Astrium}(2012)]{amram_pleiades_nodate}
+{Astrium}.
+\newblock Pléiades {Imagery} {User} {Guide}, October 2012.
+\newblock URL
+  \url{https://content.satimagingcorp.com/media/pdf/User_Guide_Pleiades.pdf}.
+\newblock Version 2.0.
+
+\bibitem[{Astrium Services}(2013)]{noauthor_spot6_nodate}
+{Astrium Services}.
+\newblock {SPOT} 6 \& {SPOT} 7 {Imagery} {User} {Guide}, July 2013.
+\newblock URL
+  \url{https://www.engesat.com.br/wp-content/uploads/SPOT6-7_UserGuide_201906.pdf}.
+\newblock SI/DC/13034-v1.0.
+
+\bibitem[{ESA Earth Online}(n.d.)]{noauthor_pleiades_nodate}
+{ESA Earth Online}.
+\newblock Pléiades {Neo} - {Earth} {Online}, n.d.
+\newblock URL \url{https://earth.esa.int/eogateway/missions/pleiades-neo}.
+
+\bibitem[Jacquet and Szpankowski(1998)]{jacquet_analytical_1998}
+Philippe Jacquet and Wojciech Szpankowski.
+\newblock Analytical depoissonization and its applications.
+\newblock \emph{Theoretical Computer Science}, 201\penalty0 (1):\penalty0
+  1--62, July 1998.
+\newblock ISSN 0304-3975.
+\newblock \doi{10.1016/S0304-3975(97)00167-9}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0304397597001679}.
+
+\end{thebibliography}

@@ -1,0 +1,43 @@
+\section{Background}
+\label{sec:background}
+
+\paragraph{EO scheduling.}
+We consider the problem of a single agile EO satellite that selects a feasible subset of requested images to maximize collected utility.
+Following conventions in previous EO scheduling work~\citep{augenstein_optimal_2014, eddy_task_2021}, each request consisting of a latitude/longitude point is combined with the satellite orbital parameters to produce a list of accesses: a tuple of the request, time, and off-nadir roll angle \cite{kacker_spacecraft_2025}. A mixed integer linear program (MILP) is then used to schedule these accesses subject to agility and repetition constraints \secref{sec:scheduling}.
+
+Prior scheduling work for agile EO spacecraft varies on runtime, optimality, and expressivity.
+Greedy dispatch rules are simple enough for onboard use~\citep{bianchessi_heuristic_2007, bianchessi_planning_2008, wolfe_three_2000}, while MILP formulations provide optimal schedules for known utilities~\citep{bensana_earth_1999, augenstein_optimal_2016, nag_autonomous_2019}.
+Graph-based longest-path and maximum-independent-set formulations exploit the sparse structure of access conflicts for near-optimal solutions at lower cost~\citep{augenstein_optimal_2014, eddy_maximum_2021, eddy_task_2021}.
+Markov decision process (MDP), reinforcement-learning (RL), and Monte Carlo tree search approaches have been explored and need not stick to the access-based formulation~\citep{eddy_markov_2020, herrmann_reinforcement_2023, wang_deep_2023, hadj-salah_schedule_2019, herrmann_monte_2022}. 
+
+% but the central obstacle for dynamic tasking is not only schedule optimization: it is deciding which uncertain future accesses are worth observing before the primary instrument commits.
+
+\paragraph{Dynamic targeting and tasking.}
+We use dynamic \emph{targeting} for systems that acquire new information and synthesize new imaging targets within a single overflight, and dynamic \emph{tasking} for the case of re-optimizing with an initial schedule and a fixed list of requests.
+EO-1's Autonomous Sciencecraft Experiment (ASE) pioneered onboard replanning and onboard ML-based classification, though its compute budget restricted autonomy primarily to follow-up observations rather than within-overflight replanning~\citep{chien_using_2005, chien_lessons_2005, wagstaff_cloud_2017} .
+More recent systems are able to re-plan within a single overflight: GOSAT-2 re-points its primary instrument away from clouds using a fold mirror~\citep{imasu_greenhouse_2023}, and CogniSAT-6 demonstrated autonomous tasking on a 6U CubeSat using a CNN pipeline on a Myriad~X VPU~\citep{rijlaarsdam_autonomous_2024}.
+
+Algorithmic work has addressed onboard replanning with anytime planners, timeline fragments, pointing heuristics, constellation-aware MILPs, and MDPs~\citep{damiani_continuous_2005, lenzen_onboard_2014, chien_heuristic_nodate, chien_onboard_2015, nag_autonomous_2019, candela_dynamic_2022}.
+Kangaslahti et al.~\citep{kangaslahti_dynamic_2024} provide the closest robotics-side satellite comparator, modeling dynamic targeting with a lookahead sensor, slewing constraints, changing observation utility, and greedy/depth-first search over observation choices.
+These methods establish onboard adaptation, but generally either search directly over lookahead actions or assume a fixed observation strategy rather than deriving the lookahead decision space from spacecraft geometry and agility constraints and then attaching a lightweight value-of-information gate.
+Complementary threads in our own prior work explored learned lookahead heuristics~\citep{kacker_reinforcement-learned_2024} and dynamic tasking driven by real-time GEO meteorological data~\citep{kacker_leveraging_2025}.
+% The remaining gap is a lightweight value model for body-fixed lookahead that can be evaluated onboard and tied to formal timing guarantees.
+
+\paragraph{Onboard compute and agility.}
+\label{sec:compute}
+\label{sec:agility_background}
+Vision-based dynamic tasking requires enough onboard compute to classify lookahead imagery before the target passes.
+This was prohibitive for EO-1's ${\sim}4$~MIPS shared flight processor~\citep{chien_using_2005, chien_lessons_2005}, but recent COTS VPU/GPU-class processors support in-orbit ML, onboard cloud detection, compression, and autonomous tasking demonstrations~\citep{kacker_machine_2022, giuffrida_-sat-1_2022, marin_phi-sat-2_2021, rijlaarsdam_autonomous_2024, rijlaarsdam_next_2024, noauthor_planet_2024}.
+For this paper, classification is no longer the tight loop; schedule repair time and spacecraft agility are.
+
+Agility determines whether information from a lookahead can still be acted on before the primary imaging opportunity passes~\citep{eddy_task_2021, lemaitre_selecting_2002}.
+Most representative agile platforms complete this maneuver in 25--40~s with a $\pm$\ang{45} off-nadir field of regard.
+Representative public slew specifications are summarized in Appendix~\ref{sec:appendix_system_data}.
+A practical lookahead instrument must span the field of regard horizontally and provide tens of seconds of vertical lead time; \secref{sec:lookahead_design} derives these geometry constraints.
+
+\paragraph{Sequential information acquisition.}
+Dynamic tasking can be viewed as sequential information acquisition: the spacecraft spends time and resources to reveal uncertain task values before committing the primary instrument.
+In robotics, the analogous active-perception and informative-path-planning problems choose sensing actions under travel, time, or energy constraints, often trading exploration against exploitation in a partially observed environment~\citep{singh_nonmyopic_2009, tan_informative_2024}.
+Those formulations usually value observations through uncertainty reduction, coverage, or submodular information objectives.
+Classical inspection and probing models study related value-of-information trade-offs~\citep{weitzman_optimal_1978, gupta_algorithms_2015}, but they typically treat inspected items as separable.
+EO tasking differs from both threads because the value of a revealed clear target depends on whether it can be inserted into a feasible schedule. This coupling between information value, spacecraft agility, and schedule repair is the setting considered in this paper.

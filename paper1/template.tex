@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage{arxiv}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Zotero-exported bib entries occasionally contain unmapped Unicode codepoints.
+% Map them so pdflatex can typeset them without failing.
+\DeclareUnicodeCharacter{03A6}{\ensuremath{\Phi}}
+\DeclareUnicodeCharacter{0131}{\i}
+\DeclareUnicodeCharacter{015F}{\c{s}}
+\DeclareUnicodeCharacter{0302}{\^{}}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+\usepackage{doi}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{todonotes}
+\usepackage{fontawesome5}
+\usepackage{placeins}
+\usepackage{amsthm}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\newtheorem{definition}[proposition]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc, decorations.markings, patterns, fit, backgrounds, angles, quotes}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.18}
+
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator*{\argmin}{argmin}
+
+\newcommand\figref{Figure~\ref}
+\renewcommand\eqref{Equation~\ref}
+\newcommand\tabref{Table~\ref}
+\newcommand*{\secref}[1]{\hyperref[{#1}]{\S\ref*{#1}}}
+
+\title{Look Before You Slew: Information-Gated Dynamic Tasking for Agile Earth Observation}
+
+\author{\normalfont
+\href{https://orcid.org/0000-0002-7227-4946}{\includegraphics[scale=0.06]{orcid.pdf}\hspace{1mm}\textbf{Shreeyam Kacker}}\textsuperscript{1}
+\quad \textbf{Steve Chien}\textsuperscript{2}
+\quad \textbf{Işıl Demir}\textsuperscript{3}
+\quad \textbf{Kiruthika Devaraj}\textsuperscript{3}
+\quad \textbf{Kerri Cahoy}\textsuperscript{1}\\[0.35em]
+\textsuperscript{1}Department of Aeronautics and Astronautics, MIT\\
+\textsuperscript{2}Jet Propulsion Laboratory, California Institute of Technology\\
+\textsuperscript{3}Planet Labs\\
+\texttt{shreeyam@mit.edu} \quad \texttt{kcahoy@mit.edu}
+}
+
+\renewcommand{\headeright}{}
+\renewcommand{\undertitle}{}
+\renewcommand{\shorttitle}{Look Before You Slew}
+
+\hypersetup{
+pdftitle={Look Before You Slew: Information-Gated Dynamic Tasking for Agile Earth Observation},
+pdfsubject={astro-ph, cs.AI},
+pdfauthor={Shreeyam Kacker, Steve Chien, Işıl Demir, Kiruthika Devaraj, Kerri Cahoy},
+pdfkeywords={dynamic tasking, Earth observation, spacecraft scheduling, value of information, active perception, onboard autonomy},
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\noindent\textbf{Keywords:} dynamic tasking, Earth observation, spacecraft scheduling, onboard autonomy, agile satellites
+
+\noindent\faGithub\hspace{0.5em}\url{https://github.com/Shreeyam/phd_code}
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/conclusion}
+
+\FloatBarrier
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\input{sections/appendix}
+
+\end{document}

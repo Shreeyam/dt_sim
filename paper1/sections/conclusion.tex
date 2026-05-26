@@ -1,0 +1,17 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We derive a two-boundary renewal estimator for deciding when a body-fixed lookahead maneuver is worth its schedule cost, then reduce it to a monotone break-even heuristic for lightweight onboard gating.
+The estimator separates the physical slew prior from a schedule-dependent break-even spacing, and the optimal-timing result (Proposition~\ref{prop:timing}) collapses the one-dimensional timing search to a closed-form initiation time that incurs zero opportunity cost up to a bounded perturbation.
+Together, the break-even margin, timing rule, and pitch search produce an onboard policy that asks a direct engineering question: whether any feasible pointing angle can generate enough expected clear-image equivalents to beat the local replacement burden.
+
+\paragraph{Limitations.}
+The policy's value estimator assumes equal task utility (A4), i.i.d.\ cloud states (A3), and constant gap spacing (A1).
+Relaxing these---particularly for heterogeneous Pareto-distributed task values---is necessary for realistic commercial operations where a small fraction of high-value tasks dominates schedule utility.
+The analysis also assumes perfect lookahead classification once an access is visible.
+False positives would insert cloudy tasks into the repaired schedule, while false negatives would suppress useful alternate accesses; quantifying sensitivity to classifier precision and recall is therefore necessary before mapping the method to a specific onboard vision pipeline.
+
+\paragraph{Future work.}
+Extending the chain-length analysis to utility-weighted chains would address the Pareto case.
+Multi-step lookaheads within a single gap could improve coverage for narrow-FoV instruments.
+Constellation extensions with shared belief states across spacecraft could reduce redundant observations, and pre-planning lookahead opportunities in the ground schedule could yield global improvements at the cost of additional computational complexity.
