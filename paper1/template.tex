@@ -11,7 +11,7 @@
 \DeclareUnicodeCharacter{015F}{\c{s}}
 \DeclareUnicodeCharacter{0302}{\^{}}
 \usepackage{hyperref}
-\usepackage{url}
+\usepackage{xurl}
 \usepackage{booktabs}
 \usepackage{amsfonts}
 \usepackage{amsmath}
@@ -58,8 +58,8 @@
 \author{\normalfont
 \href{https://orcid.org/0000-0002-7227-4946}{\includegraphics[scale=0.06]{orcid.pdf}\hspace{1mm}\textbf{Shreeyam Kacker}}\textsuperscript{1}
 \quad \textbf{Steve Chien}\textsuperscript{2}
-\quad \textbf{Işıl Demir}\textsuperscript{3}
 \quad \textbf{Kiruthika Devaraj}\textsuperscript{3}
+\quad \textbf{Işıl Demir}\textsuperscript{3}
 \quad \textbf{Kerri Cahoy}\textsuperscript{1}\\[0.35em]
 \textsuperscript{1}Department of Aeronautics and Astronautics, MIT\\
 \textsuperscript{2}Jet Propulsion Laboratory, California Institute of Technology\\
@@ -72,13 +72,15 @@
 \renewcommand{\shorttitle}{Look Before You Slew}
 
 \hypersetup{
+hidelinks,
 pdftitle={Look Before You Slew: Information-Gated Dynamic Tasking for Agile Earth Observation},
 pdfsubject={astro-ph, cs.AI},
-pdfauthor={Shreeyam Kacker, Steve Chien, Işıl Demir, Kiruthika Devaraj, Kerri Cahoy},
+pdfauthor={Shreeyam Kacker, Steve Chien, Kiruthika Devaraj, Işıl Demir, Kerri Cahoy},
 pdfkeywords={dynamic tasking, Earth observation, spacecraft scheduling, value of information, active perception, onboard autonomy},
 }
 
 \begin{document}
+\raggedbottom
 \maketitle
 
 \begin{abstract}
@@ -87,7 +89,7 @@ pdfkeywords={dynamic tasking, Earth observation, spacecraft scheduling, value of
 
 \noindent\textbf{Keywords:} dynamic tasking, Earth observation, spacecraft scheduling, onboard autonomy, agile satellites
 
-\noindent\faGithub\hspace{0.5em}\url{https://github.com/Shreeyam/phd_code}
+\noindent\faGithub\hspace{0.5em}\url{https://github.com/Shreeyam/dt_sim}
 
 \input{sections/introduction}
 \input{sections/background}

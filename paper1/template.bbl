@@ -1,4 +1,4 @@
-\begin{thebibliography}{57}
+\begin{thebibliography}{55}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -52,27 +52,6 @@ Howard Raiffa.
 \newblock \emph{Decision {Analysis}: {Introductory} {Lectures} on {Choices}
   under {Uncertainty}}.
 \newblock Addison-Wesley, Reading, MA, 1968.
-
-\bibitem[Augenstein(2014)]{augenstein_optimal_2014}
-Sean Augenstein.
-\newblock Optimal {Scheduling} of {Earth}-{Imaging} {Satellites} with {Human}
-  {Collaboration} via {Directed} {Acyclic} {Graphs}.
-\newblock \emph{AAAI Spring Symposium Series}, 2014.
-
-\bibitem[Eddy(2021)]{eddy_task_2021}
-Duncan Eddy.
-\newblock \emph{Task {Planning} for {Earth} {Observing} {Satellite} {Systems}}.
-\newblock PhD thesis, Stanford University, 2021.
-\newblock URL
-  \url{https://stacks.stanford.edu/file/druid:fp397ds6833/eddy_thesis_final-augmented.pdf}.
-
-\bibitem[Kacker(2025)]{kacker_spacecraft_2025}
-Shreeyam Kacker.
-\newblock \emph{Spacecraft {Autonomy} through {Computer} {Vision} and {Onboard}
-  {Planning}}.
-\newblock Thesis, Massachusetts Institute of Technology, September 2025.
-\newblock URL \url{https://dspace.mit.edu/handle/1721.1/165156}.
-\newblock Accepted: 2026-03-16T15:46:14Z.
 
 \bibitem[Bianchessi et~al.(2007)Bianchessi, Cordeau, Desrosiers, Laporte, and
   Raymond]{bianchessi_heuristic_2007}
@@ -137,6 +116,12 @@ Sreeja Nag, Alan~S. Li, Vinay Ravindra, Marc Sanchez~Net, Kar-Ming Cheung, Rod
   April 2019.
 \newblock URL \url{https://openreview.net/forum?id=rJeDNZq5FE}.
 
+\bibitem[Augenstein(2014)]{augenstein_optimal_2014}
+Sean Augenstein.
+\newblock Optimal {Scheduling} of {Earth}-{Imaging} {Satellites} with {Human}
+  {Collaboration} via {Directed} {Acyclic} {Graphs}.
+\newblock \emph{AAAI Spring Symposium Series}, 2014.
+
 \bibitem[Eddy and Kochenderfer(2021)]{eddy_maximum_2021}
 Duncan Eddy and Mykel~J. Kochenderfer.
 \newblock A {Maximum} {Independent} {Set} {Method} for {Scheduling}
@@ -146,6 +131,13 @@ Duncan Eddy and Mykel~J. Kochenderfer.
 \newblock ISSN 0022-4650, 1533-6794.
 \newblock \doi{10.2514/1.A34931}.
 \newblock URL \url{https://arc.aiaa.org/doi/10.2514/1.A34931}.
+
+\bibitem[Eddy(2021)]{eddy_task_2021}
+Duncan Eddy.
+\newblock \emph{Task {Planning} for {Earth} {Observing} {Satellite} {Systems}}.
+\newblock PhD thesis, Stanford University, 2021.
+\newblock URL
+  \url{https://stacks.stanford.edu/file/druid:fp397ds6833/eddy_thesis_final-augmented.pdf}.
 
 \bibitem[Eddy and Kochenderfer(2020)]{eddy_markov_2020}
 Duncan Eddy and Mykel Kochenderfer.
@@ -301,23 +293,6 @@ Steve Chien, Russell Knight, Steve Schaffer, David~R Thompson, Brian Bue, and
 \newblock \emph{International Joint Conference on Artificial Intelligence
   Workshop on Artificial Intelligence in Space (AI Space, IJCAI 2015)}, 2015.
 
-\bibitem[Kacker and Cahoy(2024)]{kacker_reinforcement-learned_2024}
-Shreeyam Kacker and Kerri Cahoy.
-\newblock Reinforcement-{Learned} {Lookahead} {Heuristics} for
-  {Earth}-{Observing} {Satellites}.
-\newblock \emph{Small Satellite Conference}, August 2024.
-\newblock URL \url{https://digitalcommons.usu.edu/smallsat/2024/all2024/60}.
-
-\bibitem[Kacker et~al.(2025)Kacker, Chien, Devaraj, Demir, and
-  Cahoy]{kacker_leveraging_2025}
-Shreeyam Kacker, Steve Chien, Kiruthika Devaraj, Isıl Demir, and Kerri Cahoy.
-\newblock Leveraging {Realtime} {Meteorological} {Data} for {Dynamic} {Tasking}
-  of {Agile} {Earth}-{Observing} {Satellites}.
-\newblock In \emph{Proceedings of the 14th International Workshop on Planning
-  and Scheduling for Space}, Toulouse, France, April 2025.
-\newblock URL
-  \url{https://ai.jpl.nasa.gov/public/documents/papers/kacker-iwpss-2025.pdf}.
-
 \bibitem[Kacker et~al.(2022)Kacker, Meredith, Cahoy, and
   Labrèche]{kacker_machine_2022}
 Shreeyam Kacker, Alex Meredith, Kerri Cahoy, and Georges Labrèche.
@@ -409,6 +384,24 @@ Anupam Gupta, Viswanath Nagarajan, and Sahil Singla.
 \newblock URL
   \url{https://epubs.siam.org/doi/abs/10.1137/1.9781611974331.ch120}.
 
+\bibitem[Xu et~al.(2020)Xu, Liu, He, and Chen]{xu_multi-satellite_2020}
+Yingjie Xu, Xiaolu Liu, Renjie He, and Yingguo Chen.
+\newblock Multi-satellite scheduling framework and algorithm for very large
+  area observation.
+\newblock \emph{Acta Astronautica}, 167:\penalty0 93--107, February 2020.
+\newblock ISSN 00945765.
+\newblock \doi{10.1016/j.actaastro.2019.10.041}.
+\newblock URL
+  \url{https://linkinghub.elsevier.com/retrieve/pii/S0094576519313694}.
+
+\bibitem[Kacker(2025)]{kacker_spacecraft_2025}
+Shreeyam Kacker.
+\newblock \emph{Spacecraft {Autonomy} through {Computer} {Vision} and {Onboard}
+  {Planning}}.
+\newblock Thesis, Massachusetts Institute of Technology, September 2025.
+\newblock URL \url{https://dspace.mit.edu/handle/1721.1/165156}.
+\newblock Accepted: 2026-03-16T15:46:14Z.
+
 \bibitem[Chien et~al.(2005{\natexlab{c}})Chien, Cichy, Davies, Tran, Rabideau,
   Castano, Sherwood, Mandl, Frye, Shulman, Jones, and
   Grosvenor]{chien_autonomous_2005}
@@ -446,6 +439,16 @@ Steve Chien, David Mclaren, Joshua Doubleday, Daniel Tran, Veerachai Tanpipat,
 \newblock \doi{10.2514/1.I010672}.
 \newblock URL \url{https://arc.aiaa.org/doi/10.2514/1.I010672}.
 
+\bibitem[Kacker et~al.(2025)Kacker, Chien, Devaraj, Demir, and
+  Cahoy]{kacker_leveraging_2025}
+Shreeyam Kacker, Steve Chien, Kiruthika Devaraj, Isıl Demir, and Kerri Cahoy.
+\newblock Leveraging {Realtime} {Meteorological} {Data} for {Dynamic} {Tasking}
+  of {Agile} {Earth}-{Observing} {Satellites}.
+\newblock In \emph{Proceedings of the 14th International Workshop on Planning
+  and Scheduling for Space}, Toulouse, France, April 2025.
+\newblock URL
+  \url{https://ai.jpl.nasa.gov/public/documents/papers/kacker-iwpss-2025.pdf}.
+
 \bibitem[Mahonchak(2019)]{mahonchak_goes-r_nodate}
 Gary~D Mahonchak.
 \newblock {GOES}-{R} {Series} {Data} {Book}.
@@ -453,27 +456,6 @@ Gary~D Mahonchak.
 \newblock URL
   \url{https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf}.
 \newblock Revision A; CDRL PM-14.
-
-\bibitem[Xu et~al.(2020)Xu, Liu, He, and Chen]{xu_multi-satellite_2020}
-Yingjie Xu, Xiaolu Liu, Renjie He, and Yingguo Chen.
-\newblock Multi-satellite scheduling framework and algorithm for very large
-  area observation.
-\newblock \emph{Acta Astronautica}, 167:\penalty0 93--107, February 2020.
-\newblock ISSN 00945765.
-\newblock \doi{10.1016/j.actaastro.2019.10.041}.
-\newblock URL
-  \url{https://linkinghub.elsevier.com/retrieve/pii/S0094576519313694}.
-
-\bibitem[Bosch-Lluis et~al.(2022)Bosch-Lluis, Kangaslahti, Ramos, Ogut, Tanner,
-  Cooperrider, Munoz-Martini, Yue, Deal, and Cooke]{bosch-lluis_smart_2022}
-Xavier Bosch-Lluis, Pekka Kangaslahti, Isaac Ramos, Mehmet Ogut, Alan Tanner,
-  Joelle Cooperrider, Joan~Francesc Munoz-Martini, Qing Yue, William Deal, and
-  Caitlyn Cooke.
-\newblock Smart {Ice} {Cloud} {Sensing} ({SMICES}): {An} {Overview} of its
-  {Submillimeter} {Wave} {Radiometer}.
-\newblock In \emph{{IGARSS} 2022 - 2022 {IEEE} {International} {Geoscience} and
-  {Remote} {Sensing} {Symposium}}, pages 4296--4299, July 2022.
-\newblock \doi{10.1109/IGARSS46834.2022.9883671}.
 
 \bibitem[Feller(1991)]{feller_introduction_1991}
 William Feller.

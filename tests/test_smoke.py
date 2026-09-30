@@ -21,6 +21,8 @@ from dt_sim.heuristics import (
     chain_two_boundary,
     score_lookahead,
 )
+from dt_sim.scheduling import milp_schedule
+from dt_sim.simulator import _repair_objective_utilities
 
 
 # ---------- SimConfig ----------
@@ -69,6 +71,38 @@ def test_aid_survives_dict_roundtrip():
     a_copy = copy.copy(a)
     assert a.aid == a_copy.aid     # aid travels
     assert id(a) != id(a_copy)     # but the object id does not
+
+
+def test_repair_milp_weights_unknown_access_by_clear_prior():
+    """A known-clear access can beat a higher-intrinsic unknown alternative."""
+    t = datetime.datetime(2025, 1, 1)
+    known_request = Request(0, 0.0, 0.0, "known", utility=0.5)
+    unknown_request = Request(1, 1.0, 1.0, "unknown", utility=1.0)
+    known = Access(
+        known_request, t, 0.0,
+        state={"observed": True, "cloudy": False},
+    )
+    unknown = Access(
+        unknown_request, t, 0.0,
+        state={"observed": False, "cloudy": False},
+    )
+    accesses = [known, unknown]
+    agility = lambda theta: np.zeros_like(theta, dtype=float) + 1.0
+
+    unit_schedule = milp_schedule(accesses, [known_request, unknown_request],
+                                  agility)
+    repair_utilities = _repair_objective_utilities(accesses, p_clear=0.34)
+    weighted_schedule = milp_schedule(
+        accesses,
+        [known_request, unknown_request],
+        agility,
+        objective_utilities=repair_utilities,
+    )
+
+    assert repair_utilities == pytest.approx([0.5, 0.34])
+    assert unit_schedule == [unknown]
+    assert weighted_schedule == [known]
+    assert [a.utility for a in accesses] == [0.5, 1.0]
 
 
 # ---------- Chain estimator ----------

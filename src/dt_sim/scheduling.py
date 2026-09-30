@@ -72,16 +72,24 @@ def _build_conflict_pairs(accesses, agility):
 
 def milp_schedule(accesses: List[Access], requests: List[Request],
                   agility: Callable[[float], float],
-                  force_in_schedule: Optional[List[Access]] = None) -> List[Access]:
+                  force_in_schedule: Optional[List[Access]] = None,
+                  objective_utilities: Optional[List[float]] = None) -> List[Access]:
     """MILP: maximise total utility subject to slew-time and one-per-request constraints.
 
     `agility(theta)` returns the slew time (seconds) for a slew of `theta` degrees.
+    `objective_utilities`, when supplied, overrides `Access.utility` in the
+    objective without mutating the access objects.  This is used by schedule
+    repair to assign expected utility to accesses whose cloud state is unknown.
     """
     if not accesses:
         return []
+    if objective_utilities is not None and len(objective_utilities) != len(accesses):
+        raise ValueError("objective_utilities must match the access list length")
 
     pairs = _build_conflict_pairs(accesses, agility)
     force_set = {a.aid for a in (force_in_schedule or [])}
+    utilities = (objective_utilities if objective_utilities is not None
+                 else [a.utility for a in accesses])
 
     model = Model("Scheduler")
     model.hideOutput()
@@ -91,7 +99,8 @@ def milp_schedule(accesses: List[Access], requests: List[Request],
             model.addCons(x[i] == 1)
     for i, j in pairs:
         model.addCons(x[i] + x[j] <= 1)
-    model.setObjective(quicksum(x[i] * a.utility for i, a in enumerate(accesses)),
+    model.setObjective(quicksum(x[i] * utilities[i]
+                                for i in range(len(accesses))),
                        "maximize")
     model.optimize()
     sol = model.getBestSol()

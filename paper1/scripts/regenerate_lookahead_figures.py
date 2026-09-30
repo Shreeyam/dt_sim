@@ -1,8 +1,7 @@
 """Regenerate lookahead system design figures for paper1 at arxiv widths.
 
 Figures produced in paper1/figures/:
-    - lookahead_time_constraints_agile.pdf
-    - lookahead_time_constraints_ultra_agile.pdf
+    - lookahead_time_constraints.pdf
     - horizontal_fov_design_map.pdf
     - rolled_body_fov_design_map.pdf
     - camera_fov_limit_boxes.pdf
@@ -118,7 +117,7 @@ def plot_time_constraints(
     ax.set_xlim(0, 80)
     ax.set_ylim(0, y_top * 1.1)
     ax.set_xlabel(r"Lookahead angle $\alpha$ [deg]")
-    ax.set_ylabel(r"Lookahead time $t(\alpha)$ [s]")
+    ax.set_ylabel(r"Lead time $t_{\mathrm{lead}}(\alpha)$ [s]")
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(
         handles[::-1],
@@ -151,7 +150,7 @@ def horizontal_fov_requirement(
     h_km: float,
     boresight_pitch_deg: float | np.ndarray | None = None,
 ) -> np.ndarray:
-    """Minimum full horizontal FoV for nadir-edge-aligned FoR coverage.
+    """Minimum full horizontal FoV for nadir edge contact (zero minimum lead).
 
     The detector lower edge is aligned with nadir by default, so the boresight
     pitch is half the vertical FoV and the upper detector edge is at full
@@ -174,15 +173,14 @@ def horizontal_fov_requirement(
     remaining_horizon_sq = horizon_flat_sq - rho_for**2
     valid = np.isfinite(rho_for) & (remaining_horizon_sq >= 0)
 
-    horizon_angle = np.arcsin(
-        np.clip(np.sqrt(np.maximum(R_E**2 - rho_for**2, 0.0)) / A, 0.0, 1.0)
-    )
+    x_horizon = np.sqrt(np.maximum(remaining_horizon_sq, 0.0))
+    z_horizon = A - np.sqrt(np.maximum(R_E**2 - rho_for**2 - x_horizon**2, 0.0))
+    horizon_angle = np.arctan2(x_horizon, z_horizon)
     edge_root_arg = R_E**2 - rho_for**2 - A**2 * np.sin(upper_angle) ** 2
     edge_visible = valid & (upper_angle <= horizon_angle) & (edge_root_arg >= 0)
     x_edge = np.sin(upper_angle) * (
         A * np.cos(upper_angle) - np.sqrt(np.maximum(edge_root_arg, 0.0))
     )
-    x_horizon = np.sqrt(np.maximum(remaining_horizon_sq, 0.0))
     x_star = np.where(edge_visible, x_edge, x_horizon)
     z_star = A - np.sqrt(np.maximum(R_E**2 - x_star**2 - rho_for**2, 0.0))
     depth = x_star * np.sin(beta) + z_star * np.cos(beta)
@@ -201,8 +199,9 @@ def horizon_visible_vertical_fov(
     rho_for = ground_offset(np.deg2rad(field_of_regard_deg), h_km)
     horizon_flat_sq = R_E**2 * (1 - (R_E / A) ** 2)
     valid = np.isfinite(rho_for) & (rho_for**2 <= horizon_flat_sq)
-    ratio = np.sqrt(np.maximum(R_E**2 - rho_for**2, 0.0)) / A
-    horizon = np.rad2deg(np.arcsin(np.clip(ratio, 0.0, 1.0)))
+    x_horizon = np.sqrt(np.maximum(horizon_flat_sq - rho_for**2, 0.0))
+    z_horizon = A - np.sqrt(np.maximum(R_E**2 - rho_for**2 - x_horizon**2, 0.0))
+    horizon = np.rad2deg(np.arctan2(x_horizon, z_horizon))
     return np.where(valid, horizon, np.nan)
 
 
@@ -436,7 +435,7 @@ def plot_horizontal_fov_design_map(out_path: Path, *, h_km: float = 400) -> None
 
 
 def plot_rolled_body_fov_design_map(out_path: Path, *, h_km: float = 400) -> None:
-    """Heatmap for the rolled-body horizontal containment requirement."""
+    """Heatmap for rolled-body edge contact with zero minimum lead time."""
     vertical = np.linspace(5, 120, 520)
     field_of_regard = np.linspace(4, 60, 285)
     V, F = np.meshgrid(vertical, field_of_regard)
@@ -466,15 +465,16 @@ def plot_rolled_body_fov_design_map(out_path: Path, *, h_km: float = 400) -> Non
     )
     infeasible = ~np.isfinite(H)
     if np.any(infeasible):
-        ax.contourf(
+        infeasible_region = ax.contourf(
             V,
             F,
             infeasible.astype(float),
             levels=[0.5, 1.5],
             colors=["0.86"],
-            hatches=["///"],
-            zorder=-2,
+            hatches=["//"],
+            zorder=2,
         )
+        infeasible_region.set_edgecolor("0.65")
     levels = np.arange(20, 181, 20)
     contours = ax.contour(V, F, H, levels=levels, colors="white", linewidths=0.45, alpha=0.85)
     ax.clabel(contours, fmt=rf"$%d^\circ$", fontsize=6, inline=True)

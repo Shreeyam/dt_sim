@@ -1,17 +1,22 @@
-\section{Conclusion}
+\section{Conclusions and Future Work}
 \label{sec:conclusion}
 
-We derive a two-boundary renewal estimator for deciding when a body-fixed lookahead maneuver is worth its schedule cost, then reduce it to a monotone break-even heuristic for lightweight onboard gating.
-The estimator separates the physical slew prior from a schedule-dependent break-even spacing, and the optimal-timing result (Proposition~\ref{prop:timing}) collapses the one-dimensional timing search to a closed-form initiation time that incurs zero opportunity cost up to a bounded perturbation.
-Together, the break-even margin, timing rule, and pitch search produce an onboard policy that asks a direct engineering question: whether any feasible pointing angle can generate enough expected clear-image equivalents to beat the local replacement burden.
+We derive a two-anchor renewal estimator, a computationally lightweight monotone break-even rule, and a closed-form latest initiation time with zero opportunity cost (Proposition~\ref{prop:timing}). The resulting policy searches feasible pitches and observes only when estimated schedule improvement is positive. On sampled IID repair windows, the finite-window estimate closely matches paired Monte Carlo insertion values, while the break-even rule is conservative.
+In full \SI{24}{\hour} scheduling trials, the value-based policies close roughly \SI{78}{\percent}--\SI{79}{\percent} of the conventional-to-omniscient gap under both IID and realistic BCM cloud fields, while using about \SI{40}{\percent} fewer lookaheads per scheduled access than a greedy lookahead baseline.
+The highest normalized cells reach about \SI{86}{\percent} under both cloud models, although these fractions do not rank absolute utility across agility settings. In the overflight case, both value policies reach the same repaired clear-image count with the same lookahead count despite scoring views differently.
 
 \paragraph{Limitations.}
-The policy's value estimator assumes equal task utility (A4), i.i.d.\ cloud states (A3), and constant gap spacing (A1).
-Relaxing these---particularly for heterogeneous Pareto-distributed task values---is necessary for realistic commercial operations where a small fraction of high-value tasks dominates schedule utility.
-The analysis also assumes perfect lookahead classification once an access is visible.
-False positives would insert cloudy tasks into the repaired schedule, while false negatives would suppress useful alternate accesses; quantifying sensitivity to classifier precision and recall is therefore necessary before mapping the method to a specific onboard vision pipeline.
+The estimator assumes equal task utility (A4), i.i.d.\ cloud states (A3), and constant gap spacing (A1). BCM success under structured truth does not test prior mis-specification: $p_{\mathrm{clear}}=0.34$ is fixed, so richer beliefs and biased climatology remain open. Relaxing equal utility is especially important when Pareto-distributed values concentrate utility in few tasks.
+
+Physical dead time is conservatively set by a worst-case cross-track slew across the full field of regard, not the realized local sequence. Flight software could recover margin with certified local bounds or angle-dependent costs.
+
+Scalar pitch search reduces the two-dimensional footprint to along-track support. In the Brazil case, a high-value access enters through the rectangular FoV's side rather than the chain model's forward edge. Connected-component scoring or lateral-entry diagnostics could detect this mismatch.
+
+The analysis also assumes perfect classification whenever an access is visible. False positives insert cloudy tasks; false negatives suppress alternatives; latency shrinks the actionable window; and high-pitch resolution loss can prevent classification. A mission implementation must therefore test precision, recall, latency, and resolution.
+
+Finally, experiments compare a greedy baseline and conventional/omniscient bounds, not stronger anytime MILP/LNS, MCTS, MDP, or learned planners. Such comparisons must test whether the estimator still helps more capable repair methods.
 
 \paragraph{Future work.}
-Extending the chain-length analysis to utility-weighted chains would address the Pareto case.
-Multi-step lookaheads within a single gap could improve coverage for narrow-FoV instruments.
-Constellation extensions with shared belief states across spacecraft could reduce redundant observations, and pre-planning lookahead opportunities in the ground schedule could yield global improvements at the cost of additional computational complexity.
+Primary-instrument lookahead requires camera and cost models for imaging, retargeting, schedule degradation, and resolution-dependent classification. Radar, cross-satellite sensing, and meteorological data require corresponding visibility, latency, error, and maneuver models.
+
+Algorithmic extensions include utility-weighted chains, correlated cloud and event beliefs, and multi-step lookahead within a gap. For constellations, shared beliefs could prevent redundant sensing, while ground planning could nominate lookahead opportunities before onboard repair.

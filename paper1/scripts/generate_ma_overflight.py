@@ -42,7 +42,13 @@ from dt_sim.scenario import build_scenario
 from dt_sim.scheduling import load_worldcities
 from dt_sim.simulator import _evaluate_variant
 
-STYLE_PATH = Path(__file__).resolve().parent.parent.parent / "shreeyam.mplstyle"
+STYLE_PATH = next(
+    p for p in (
+        Path(__file__).resolve().parents[2] / "shreeyam.mplstyle",
+        Path(__file__).resolve().parents[3] / "shreeyam.mplstyle",
+    )
+    if p.exists()
+)
 plt.style.use(["science", str(STYLE_PATH)])
 
 # ---- Default orbit / scenario: Morocco to Australia ----
@@ -392,7 +398,7 @@ def _plot_panel(ax, *, policy: str, requests, scenario, track,
         bbox={"facecolor": "white", "edgecolor": "0.85", "alpha": 0.82, "pad": 2.5},
         zorder=10,
     )
-    ax.legend(loc="upper left", frameon=True, ncol=1, fontsize=6.8)
+    ax.legend(loc="lower left", frameon=True, ncol=1, fontsize=6.8)
 
 
 def plot_case_study(requests, scenario, footprints: dict[str, list[dict]],

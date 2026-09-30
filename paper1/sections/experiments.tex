@@ -4,52 +4,37 @@
 \subsection{Experiment Setup}
 \label{sec:experiment_setup}
 
-All experiments use a common pool of \num{10000} geographically distributed imaging requests sampled from populated places worldwide.
-\figref{fig:worldcities_requests} shows the request distribution.
-Each scheduling instance uses a \SI{24}{\hour} planning window and a circular \SI{400}{\kilo\metre} low-Earth orbit with the lookahead instrument configurations from \tabref{tab:lookahead_cases}.
-Candidate lookahead observations are evaluated at their imaging time, so cloud state and insertion feasibility are tied to the actual acquisition epoch rather than to access-generation time.
-Unless otherwise stated, the realistic-cloud experiments use the BCM clear probability prior $p=0.34$.
+All experiments draw from \num{10000} globally distributed populated-place requests. Scheduling uses a \SI{24}{\hour} window, circular \SI{400}{\kilo\metre} orbit, and \tabref{tab:lookahead_cases} instruments. Lookaheads are evaluated at imaging time, tying cloud state and insertion feasibility to acquisition epoch. Unless noted, the BCM prior is $p=0.34$.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.72\linewidth]{figures/10k_worldcities.png}
-    \caption{Global request set used for the scheduling experiments. The \num{10000} candidate targets are sampled from populated places, yielding dense coverage over major urban corridors while preserving worldwide geographic diversity.}
-    \label{fig:worldcities_requests}
-\end{figure}
+We compare four levels of information use. The \emph{conventional} policy executes the ground-planned schedule under realized cloud truth, while the \emph{omniscient} MILP re-optimizes after every access state is revealed and serves as an upper reference. The \emph{greedy} lookahead policy selects the pitch revealing the largest number of unobserved accesses and looks whenever a nonempty view exists, without a schedule-value gate. The break-even and two-anchor policies look only when their respective value estimates are positive.
+
+For policy $\pi$, we report the realized conventional-to-omniscient gap fraction
+\begin{equation}
+f_{\mathrm{closed}}(\pi)
+=
+\frac{J_{\pi}-J_{\mathrm{conv}}}
+{J_{\mathrm{omni}}-J_{\mathrm{conv}}},
+\label{eq:gap_fraction_closed}
+\end{equation}
+alongside absolute clear-image utility. Lookahead use is the number of lookahead actions divided by the number of accesses in the initial conventional schedule.
 
 \subsection{Experiment 1: Heuristic Calibration}
 \label{sec:exp_heuristic_calibration}
 
-This experiment calibrates the two-anchor value estimate and its break-even surrogate against paired Monte Carlo estimates of the true local insertion advantage in sampled iid repair windows.
-The calibration separates the finite-window two-anchor value estimate $\widehat{K}_{2a}(g_{\mathrm{phys}})-B$ from its lightweight break-even surrogate $\widehat{K}_{b}(g_{\mathrm{phys}})-B$; $g_{\mathrm{break}}$ and $M=g_{\mathrm{break}}-g_{\mathrm{phys}}$ are retained as gate diagnostics rather than advantage estimators.
-The sampler draws candidate density, cloud probability, physical spacing, and missed-task burden without conditioning on the sign of the heuristic, so the calibration includes both net-positive and net-negative lookahead windows.
-For each sampled window, the Monte Carlo value is a conditional expectation over iid Bernoulli cloud states at the fixed candidate access times, not a full orbit-and-weather simulation.
-In this iid setting the baseline term $B=p(N_{\mathrm{sched}}+N_{\mathrm{missed}})$ is unbiased by construction, so the residual bias after baseline subtraction reflects the chain approximation rather than the replacement-burden term.
-The finite-window two-anchor estimator in \secref{sec:heuristic} removes this dominant boundary effect, while the break-even surrogate remains useful as a lightweight monotone onboard gate.
-On the same anchor-normalized windows, the two-anchor advantage estimate attains CCC $0.992$ with bias $-0.025$, compared with CCC $0.982$ and bias $-0.305$ for the break-even surrogate.
-All calibration panels report \SI{95}{\percent} bootstrap confidence intervals for CCC and bias, resampling windows while propagating the pointwise Monte Carlo standard error of each conditional mean; shaded bands show the corresponding \SI{95}{\percent} bootstrap confidence intervals for the least-squares calibration line.
+We calibrate two-anchor advantage $\widehat{K}_{2a}(g_{\mathrm{phys}})-B$ and its break-even surrogate $\widehat{K}_{b}(g_{\mathrm{phys}})-B$ against paired Monte Carlo local insertion advantage in sampled IID repair windows. The corresponding $g_{\mathrm{break}}$ and margin $M=g_{\mathrm{break}}-g_{\mathrm{phys}}$ remain gate diagnostics rather than estimates of advantage itself.
+
+The sampler varies candidate density, cloud probability, physical spacing, and missed-task burden without conditioning on the sign of either heuristic. Each Monte Carlo value averages IID Bernoulli cloud states at fixed access times rather than running a full orbit-and-weather simulation. Thus this experiment isolates the exchangeable-access model; Experiments~2--3 add real geometry, pitch-dependent support, and schedule repair. Because $B=p(N_{\mathrm{sched}}+N_{\mathrm{missed}})$ is unbiased here, residual bias reflects the chain approximation.
+
+We measure continuous agreement using the concordance correlation coefficient (CCC), which penalizes both dispersion and systematic offset from the one-to-one line. The two-anchor estimate attains CCC $0.992$ with bias $-0.025$, versus CCC $0.982$ and bias $-0.305$ for break-even.
+Across 400 windows, two-anchor has \SI{97.3}{\percent} sign agreement, \SI{2.1}{\percent} false accepts among acceptances, and \SI{3.6}{\percent} false rejects among positive windows. Break-even has \SI{92.3}{\percent}, \SI{1.8}{\percent}, and \SI{14.4}{\percent}, respectively, confirming its conservatism. Against an oracle that accepts positive Monte Carlo advantage, mean regret is 0.005 versus 0.022 clear-image equivalents per window. \SI{95}{\percent} bootstrap intervals resample windows, propagate pointwise Monte Carlo error, and bound CCC, bias, and the least-squares line.
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/two_anchor_calibration_chain.pdf}
-        \caption{Two-anchor insertable clear-access count.}
-        \label{fig:two_anchor_calibration_chain}
-    \end{subfigure}
-    \hfill
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
         \includegraphics[width=\linewidth]{figures/two_anchor_calibration_advantage.pdf}
         \caption{Two-anchor net advantage.}
         \label{fig:two_anchor_calibration_advantage}
-    \end{subfigure}
-    \vspace{0.75em}
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/breakeven_calibration_chain.pdf}
-        \caption{Break-even insertable clear-access count.}
-        \label{fig:breakeven_calibration_chain}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\linewidth}
@@ -58,95 +43,48 @@ All calibration panels report \SI{95}{\percent} bootstrap confidence intervals f
         \caption{Break-even net advantage.}
         \label{fig:breakeven_calibration_advantage}
     \end{subfigure}
-    \caption{Experiment~1 calibration on sampled iid repair windows. Each point fixes one synthetic window and reports the Monte Carlo mean over iid cloud-state draws. Panels compare the two-anchor estimate $\widehat{K}_{2a}(g_{\mathrm{phys}})$ and advantage $\widehat{K}_{2a}(g_{\mathrm{phys}})-B$ against the lightweight break-even surrogate $\widehat{K}_{b}(g_{\mathrm{phys}})$ and $\widehat{K}_{b}(g_{\mathrm{phys}})-B$.}
+    \caption{Net-advantage calibration on sampled IID repair windows. Each point is a synthetic window averaged over IID cloud draws. Panels compare Monte Carlo advantage with \textbf{(left)} two-anchor and \textbf{(right)} break-even estimates.}
     \label{fig:heuristic_calibration_2x2}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\linewidth]{figures/two_anchor_advantage_comparison.pdf}
-    \caption{Direct comparison of the Experiment~1 advantage estimators. Candidate accesses are sampled on the full anchor interval $[t_L,t_R]$, while insertable clear chains must lie in the anchor-trimmed interval $[t_L+g,t_R-g]$. The two-anchor estimator closely tracks the Monte Carlo advantage, whereas the break-even surrogate $\widehat{K}_{b}$ is deliberately lightweight and slightly conservative on these windows. Shaded bands show \SI{95}{\percent} bootstrap confidence intervals for the least-squares calibration lines, including pointwise Monte Carlo standard error.}
-    \label{fig:two_anchor_advantage_comparison}
 \end{figure}
 \FloatBarrier
 
 \subsection{Experiment 2: IID End-to-End Scheduling}
 \label{sec:exp_iid_scheduling}
 
-This experiment evaluates greedy, break-even, and two-anchor policies inside the full receding-horizon scheduler under iid Bernoulli cloud truth.
-Each trial constructs the conventional schedule, samples realized cloud states independently with $p_{\mathrm{clear}}=0.34$, computes an omniscient clear-sky upper bound, and then replays paired dynamic-tasking policies on the same access set and cloud realization.
-To isolate the cloud model, the trial dates and RAAN phase matching are identical to the BCM case study in \secref{sec:exp_bcm_case_study}; only the cloud-state generator changes.
-Across \num{12} paired \SI{24}{\hour} trials using the full \num{10000}-request pool, we sweep the two lookahead FoVs in \tabref{tab:lookahead_cases}, $\Theta_h=\Theta_v\in\{\ang{45},\ang{60}\}$, and three representative agility settings, $t_{\mathrm{slew}}(\theta_{\mathrm{FoR}})\in\{25,35,45\}$~s.
-Each policy scores \num{64} candidate pitch angles per scheduling gap.
-The two-anchor policy tests the finite-window estimator directly, while the break-even policy tests the monotone gate derived from $\widehat{K}_{b}$.
-Across all FoV/agility cells, the value-based policies dominate the greedy baseline in gap closure while using about \SI{40}{\percent} fewer lookahead actions per scheduled access.
-Averaged across the sweep, greedy closes \SI{51.3}{\percent} of the omniscient gap with 0.270 lookaheads per scheduled access.
-The break-even gate closes \SI{72.1}{\percent} with 0.163 lookaheads per scheduled access, while the two-anchor policy closes \SI{72.8}{\percent} with 0.166.
-The strongest cell is the \ang{60}$\times$\ang{60} lookahead FoV with $t_{\mathrm{slew}}(\theta_{\mathrm{FoR}})=\SI{45}{\second}$: break-even closes \SI{82.1}{\percent} of the gap with 0.200 lookaheads per scheduled access, and two-anchor closes \SI{81.9}{\percent} with 0.200.
-\todo{Expand this interpretation: break-even and two-anchor are nearly indistinguishable in the iid end-to-end scheduler once the anchor-support correction is applied, so the final paper should decide whether to present break-even as the lightweight onboard rule and two-anchor as its finite-window justification.}
-Detailed numerical summaries are reported in Appendix~\ref{sec:appendix_iid_scheduling_summary}.
+We test greedy, break-even, and two-anchor policies under IID Bernoulli truth. Each trial builds the conventional schedule, samples states with $p_{\mathrm{clear}}=0.34$, computes the omniscient bound, and replays policies on identical accesses and truth. Dates and RAAN phase match the BCM study; only cloud generation changes (Appendix~\ref{sec:appendix_bcm_provenance}). Across \num{12} paired \SI{24}{\hour} trials, we sweep $\Theta_h=\Theta_v\in\{\ang{45},\ang{60}\}$ and $t_{\mathrm{slew}}(\theta_{\mathrm{FoR}})\in\{25,35,45\}$~s, scoring \num{64} pitches per gap.
+Across the sweep, greedy closes \SI{58.1}{\percent} of the conventional-to-omniscient gap with 0.269 lookaheads per scheduled access. Break-even closes \SI{78.2}{\percent} with 0.162 and two-anchor \SI{79.0}{\percent} with 0.166: higher closure with about \SI{40}{\percent} fewer actions. FoV dominates sensitivity. Enlarging it from \ang{45}$\times$\ang{45} to \ang{60}$\times$\ang{60} improves every agility cell; break-even gains \num{5.1}--\num{16.5} percentage points from \SI{25}{\second} to \SI{45}{\second}, with two-anchor similar. Greedy degrades with slew burden, while value gates avoid much of this loss by selecting fewer high-margin actions.
+At \ang{60}$\times$\ang{60}, break-even/two-anchor close \SI{80.6}{\percent}/\SI{80.9}{\percent} at \SI{25}{\second} and peak at \SI{85.7}{\percent}/\SI{85.4}{\percent} at \SI{45}{\second}, while use rises only from about 0.16 to 0.20. These normalized fractions do not rank absolute utility: for \ang{60}$\times$\ang{60} break-even, mean clear images fall from 152.2 to 125.7 across those agility settings. Thus the policies schedule nearly identically; two-anchor estimates finite-window value more accurately, while break-even yields a dead-time threshold. Appendix~\ref{sec:appendix_iid_scheduling_summary} gives all cells.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.92\linewidth]{figures/iid_scheduling_tradeoff.pdf}
-    \caption{IID end-to-end scheduling over \num{12} paired \SI{24}{\hour} trials per FoV/agility cell. Left: per-trial distribution of the conventional-to-omniscient gap fraction closed. Right: mean gap closure versus mean lookaheads per scheduled access for the same FoV/agility cells; marker shape encodes agility. Solid lines use the \ang{45}$\times$\ang{45} lookahead FoV; dashed lines use the \ang{60}$\times$\ang{60} FoV. The gray dot and orange star mark the conventional and omniscient references.}
+    \caption{IID scheduling over \num{12} paired \SI{24}{\hour} trials per FoV/agility cell. \textbf{Left:} gap fraction closed by trial. \textbf{Right:} mean closure versus lookaheads per scheduled access. Shape encodes agility; solid/dashed lines encode \ang{45}$\times$\ang{45}/\ang{60}$\times$\ang{60} FoV. The arrow marks the largest improvement over greedy; gray/orange mark conventional/omniscient bounds.}
     \label{fig:iid_scheduling_tradeoff}
 \end{figure}
 
 \subsection{Experiment 3: Realistic BCM Case Study}
 \label{sec:exp_bcm_case_study}
 
-This experiment repeats the end-to-end scheduler sweep using realistic cloud truth from geostationary Binary Cloud Mask products.
-We use \num{12} paired \SI{24}{\hour} windows spanning the available 2025 archive, with trial starts on Jan.~1, Feb.~2, Mar.~1, Apr.~1, May~1, Jun.~1, Jul.~1, Aug.~1, Sep.~1, Oct.~1, Oct.~10, and Dec.~1.
-The February and late-year dates are shifted from exact month starts only to avoid verified source-product gaps in the GOES and Himawari archives.
-For all date-based trials, the RAAN is phase-matched to the first window so that each trial repeats the same Earth-fixed ground track; remaining seasonal variation therefore comes from illumination and cloud structure rather than from a drifting target overpass pattern.
-The policy prior remains fixed at $p_{\mathrm{clear}}=0.34$, while realized clear/cloudy states are sampled from the nearest available source product at each access imaging time.
+We repeat the sweep using geostationary Binary Cloud Mask truth in \num{12} paired \SI{24}{\hour} windows. Appendix~\ref{sec:appendix_bcm_provenance} gives trial starts and product identifiers. RAAN phase matching preserves the Earth-fixed ground track across dates; seasonal variation comes from illumination and clouds. Policies retain $p_{\mathrm{clear}}=0.34$, while truth uses the nearest product at each imaging time. No correlation model is fit: structure enters only through sampled masks. Paired policies share requests, accesses, conventional schedule, and truth.
 
-\figref{fig:bcm_scheduling_tradeoff} shows that the value-based gates remain effective under spatially structured cloud fields.
-Averaged across all six FoV/agility cells, the break-even gate closes \SI{70.1}{\percent} of the conventional-to-omniscient gap using 0.162 lookaheads per scheduled access, while the two-anchor gate closes \SI{71.8}{\percent} using 0.165 lookaheads per scheduled access.
-The greedy baseline closes \SI{36.7}{\percent} on average but uses 0.264 lookaheads per scheduled access.
-The strongest BCM setting is the \ang{60}$\times$\ang{60} lookahead FoV with $t_{\mathrm{slew}}(\theta_{\mathrm{FoR}})=\SI{45}{\second}$: break-even closes \SI{80.1}{\percent} of the gap with 0.196 lookaheads per scheduled access, and two-anchor closes \SI{81.3}{\percent} with 0.198.
-With the anchor-consistent support definition, the two-anchor estimator and break-even surrogate now make similar operational decisions; two-anchor is slightly stronger on average in this sweep.
-Detailed numerical summaries are reported in Appendix~\ref{sec:appendix_bcm_scheduling_summary}.
+Under BCM truth (\figref{fig:bcm_scheduling_tradeoff}), break-even closes \SI{77.6}{\percent} using 0.161 lookaheads per scheduled access, and two-anchor closes \SI{79.0}{\percent} using 0.165. Greedy closes \SI{43.6}{\percent} using 0.264. Relative to IID, break-even changes from \SI{78.2}{\percent} to \SI{77.6}{\percent} and two-anchor remains \SI{79.0}{\percent}, whereas greedy drops from \SI{58.1}{\percent} to \SI{43.6}{\percent}. With dates, requests, geometry, and settings matched, scalar-prior screening therefore remains effective despite BCM correlation and coherent boundaries.
+The best normalized cell is \ang{60}$\times$\ang{60} at \SI{45}{\second}: break-even closes \SI{85.6}{\percent} with 0.196 lookaheads per scheduled access, and two-anchor \SI{86.0}{\percent} with 0.199. The small difference agrees with Experiment~1's bias result. Appendix~\ref{sec:appendix_bcm_scheduling_summary} reports absolute and normalized results; Appendix~\ref{sec:appendix_bcm_provenance} reports timings.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.92\linewidth]{figures/bcm_scheduling_tradeoff.pdf}
-    \caption{BCM end-to-end scheduling over \num{12} paired \SI{24}{\hour} trials per FoV/agility cell. Trial RAAN is phase-matched across dates to preserve the Earth-fixed ground track while cloud truth is sampled from realistic geostationary cloud-mask products at each access imaging time. Left: per-trial distribution of the conventional-to-omniscient gap fraction closed. Right: mean gap closure versus mean lookaheads per scheduled access; marker shape encodes agility, line style encodes FoV, and the gray dot/orange star mark conventional and omniscient references.}
+    \caption{BCM scheduling over \num{12} paired \SI{24}{\hour} trials per cell, with phase-matched RAAN and cloud masks sampled at imaging time. \textbf{Left:} gap fraction closed by trial. \textbf{Right:} mean closure versus lookaheads per scheduled access. Shape encodes agility; line style encodes FoV. The arrow marks the largest improvement over greedy; gray/orange mark conventional/omniscient bounds.}
     \label{fig:bcm_scheduling_tradeoff}
 \end{figure}
 
 \subsection{Experiment 4: Overflight Case Study}
 \label{sec:exp_overflight_case_study}
 
-As a representative single-pass case study, \figref{fig:ma_overflight_case_study} compares the two value-based policies on the same Morocco-to-Australia overflight and iid cloud realization.
-Both panels use the same access set, conventional schedule, and camera model; only the lookahead gate changes.
-Break-even uses \num{11} lookaheads and two-anchor uses \num{14}, with both policies scheduling \num{48} clear images after local repair.
+The full-day sweeps hide within-pass behavior, so \figref{fig:brazil_overflight_case_study} replays both gates on one access set, conventional schedule, camera model, and IID realization. The \SI{30}{\minute} South America pass has \num{266} candidates and begins offshore; a zero-utility virtual anchor \SI{2}{\minute} after its start exposes the initial reconnaissance gap before the first conventional image. Conventional execution schedules \num{36} real tasks and collects \num{7} clear images; omniscient scheduling collects \num{27}. Both policies take \num{5} lookaheads, repair to \num{29} tasks, and collect \num{25} clear images.
 
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/lookahead_chain_ma_break_even.pdf}
-        \caption{Break-even gate.}
-        \label{fig:ma_overflight_break_even}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/lookahead_chain_ma_two_anchor.pdf}
-        \caption{Two-anchor gate.}
-        \label{fig:ma_overflight_two_anchor}
-    \end{subfigure}
-    \caption{Representative Morocco-to-Australia overflight case study. Orange dots mark accesses observed by the lookahead instrument, gray dots mark unobserved accesses, and colored outlines show the detector footprints selected by each policy.}
-    \label{fig:ma_overflight_case_study}
-\end{figure}
+The pass also exposes scalar pitch search's geometric failure mode. A high-value access can enter the rectangular FoV laterally rather than through the modeled forward edge, yet projection includes it in the one-dimensional forward window. The gates still attain identical utility on different score scales.
 
-\figref{fig:brazil_overflight_case_study} shows the same comparison on the South America overpass used during development.
-This case includes a zero-utility virtual anchor near the start of the pass so that the receding-horizon rule can evaluate the initial offshore reconnaissance gap before the first conventional imaging task.
-With that anchor, both value gates take \num{6} lookaheads and schedule \num{23} clear images in the repaired pass.
-
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
@@ -161,6 +99,6 @@ With that anchor, both value gates take \num{6} lookaheads and schedule \num{23}
         \caption{Two-anchor gate.}
         \label{fig:brazil_overflight_two_anchor}
     \end{subfigure}
-    \caption{Brazil overpass case study using the same visual encoding as \figref{fig:ma_overflight_case_study}.}
+    \caption{Brazil overpass. Orange dots are observed accesses, gray dots unobserved accesses, and colored outlines selected detector footprints.}
     \label{fig:brazil_overflight_case_study}
 \end{figure}

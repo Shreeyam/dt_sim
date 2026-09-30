@@ -1,0 +1,9 @@
+Earth-observing satellites typically execute schedules fixed before overflight, so clouds and transient events can render planned images low-value while better opportunities go unused.
+A secondary body-fixed sensor can inspect upcoming primary-imager accesses before acquisition, but each lookahead consumes maneuver time and may displace imaging.
+We therefore observe only when expected schedule improvement exceeds this opportunity cost.
+After classification, a local scheduler removes cloudy tasks and inserts clear alternatives within the schedule fragment bounded by neighboring committed observations.
+We derive body-fixed field-of-view and agility constraints, a two-anchor renewal estimator of insertion value, and a monotone break-even approximation.
+The resulting receding-horizon policy searches feasible pitches, initiates each lookahead at the latest feasible time, updates candidate utilities, and repairs the local schedule.
+On sampled IID repair windows, the two-anchor estimate closely matches Monte Carlo insertion value, while the cheaper break-even rule is conservative.
+In paired \SI{24}{\hour} scheduling trials, the value-based policies close about \SI{78}{\percent}--\SI{79}{\percent} of the conventional-to-omniscient gap under both IID cloud truth and realistic Binary Cloud Mask fields, while using about \SI{40}{\percent} fewer lookahead actions per scheduled access than a greedy lookahead baseline.
+A case study recovers most achievable single-pass repair benefit with only a few targeted lookaheads.

@@ -75,6 +75,20 @@ def _acc_tuples(accesses):
     return [(a.ecef, a.angle, a.time, a, i) for i, a in enumerate(accesses)]
 
 
+def _repair_objective_utilities(accesses, p_clear: float) -> List[float]:
+    """Return repair-MILP utilities under the current cloud belief.
+
+    Observed-clear accesses retain their intrinsic utility.  Observed-cloudy
+    accesses are removed before this function is called; unobserved accesses
+    receive their expected utility ``p_clear * c_i``.
+    """
+    return [
+        float(a.utility) if a.state and a.state.get("observed", False)
+        else float(p_clear * a.utility)
+        for a in accesses
+    ]
+
+
 def simulate_dt(scenario: Scenario, cfg: SimConfig) -> dict:
     """Run one trial of the given decision variant on the prepared scenario."""
     width, height = 800, 800
@@ -400,8 +414,14 @@ def simulate_dt(scenario: Scenario, cfg: SimConfig) -> dict:
             slice_accesses.append(schedule[idx_end + 1])
             force_in.append(schedule[idx_end + 1])
 
-        new_slice = milp_schedule(slice_accesses, requests, agility,
-                                  force_in if force_in else None)
+        repair_utilities = _repair_objective_utilities(slice_accesses, p_clear)
+        new_slice = milp_schedule(
+            slice_accesses,
+            requests,
+            agility,
+            force_in if force_in else None,
+            objective_utilities=repair_utilities,
+        )
         if force_in:
             new_slice = [a for a in new_slice if a not in force_in]
 
